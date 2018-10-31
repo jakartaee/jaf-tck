@@ -34,24 +34,9 @@ spec:
     string(name: 'JAF_BUNDLE_URL', 
            defaultValue: 'http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar',
            description: 'URL required for downloading JAF implementation jar' )
-    string(name: 'httpProxyHost', 
-           defaultValue: '',
-           description: 'Proxy host for connecting to http urls')
-    string(name: 'httpProxyPort', 
-           defaultValue: '',
-           description: 'Proxy port for connecting to http urls')
-    string(name: 'httpsProxyHost', 
-           defaultValue: '',
-           description: 'Proxy host for connecting to https urls')
-    string(name: 'httpsProxyPort', 
-           defaultValue: '',
-           description: 'Proxy port for connecting to https urls')
   }
   environment {
-    http_proxy = "http://${httpProxyHost}:${httpProxyPort}"
-    https_proxy = "https://${httpsProxyHost}:${httpsProxyPort}"
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
-    MAIL_USER="user01@james.local"
   }
   stages {
     stage('jaf-tck-build') {

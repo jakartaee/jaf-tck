@@ -92,6 +92,7 @@ under the License.
      | Specification for one proxy, to be used in connecting to the network.
      |
     -->
+    <!--
     <proxy>
       <id>http_proxy</id>
       <active>true</active>
@@ -100,7 +101,7 @@ under the License.
       <password></password>
       <host>${env.httpProxyHost}</host>
       <port>${env.httpProxyPort}</port>
-      <nonProxyHosts>localhost|*.oracle.com</nonProxyHosts>
+      <nonProxyHosts>localhost|*.eclipse.com</nonProxyHosts>
     </proxy>
  
     <proxy>
@@ -111,9 +112,9 @@ under the License.
       <password></password>
       <host>${env.httpProxyHost}</host>
       <port>${env.httpProxyPort}</port>
-      <nonProxyHosts>localhost|*.oracle.com</nonProxyHosts>
+      <nonProxyHosts>localhost|*.eclipse.com</nonProxyHosts>
     </proxy>
-
+    -->
   </proxies>
 
   <!-- servers
