@@ -1,4 +1,4 @@
-env.label = "jaf-ci-pod-${UUID.randomUUID().toString()}"
+env.label = "jaf-tck-ci-pod-${UUID.randomUUID().toString()}"
 pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -17,7 +17,7 @@ spec:
     hostnames:
     - "localhost.localdomain"
   containers:
-  - name: jaf-ci
+  - name: jaf-tck-ci
     image: anajosep/cts-jaf:0.1
     command:
     - cat
@@ -54,12 +54,12 @@ spec:
     MAIL_USER="user01@james.local"
   }
   stages {
-    stage('jaf-build') {
+    stage('jaf-tck-build') {
       steps {
-        container('jaf-ci') {
+        container('jaf-tck-ci') {
           sh """
             env
-            bash -x ${WORKSPACE}/docker/build_jaf.sh
+            bash -x ${WORKSPACE}/docker/build_jaftck.sh
           """
           archiveArtifacts artifacts: 'bundles/*.zip'
           stash includes: 'bundles/*.zip', name: 'jaf-bundles'
@@ -67,12 +67,12 @@ spec:
       }
     }
   
-    stage('jaf-run') {
+    stage('jaf-tck-run') {
       steps {
-        container('jaf-ci') {
+        container('jaf-tck-ci') {
           sh """
             env
-            bash -x ${WORKSPACE}/docker/run_jaf.sh
+            bash -x ${WORKSPACE}/docker/run_jaftck.sh
           """
           archiveArtifacts artifacts: "jaftck-results.tar.gz"
           junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
