@@ -26,7 +26,6 @@ sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/jaf.jte
 sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/jaf.jte
 
 mkdir -p ${HOME}/.m2
-cp ${WORKSPACE}/docker/settings.xml ${HOME}/.m2
 
 cd $WORKSPACE
 WGET_PROPS="--progress=bar:force --no-cache"
