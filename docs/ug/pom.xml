@@ -23,7 +23,7 @@
     <artifactId>tck_ug</artifactId>
     <packaging>pom</packaging>
     <version>1.2</version>
-    <name>TCK User's Guide for JavaBeans Activation Framework, Release 1.2</name>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for JavaBeans Activation Framework 1.2 for Jakarta EE, Release 1.2</name>
 
     <properties>
         <site.output.dir>${project.build.directory}/staging</site.output.dir>
