@@ -15,6 +15,21 @@ Preface
 Preface
 -------
 
+[NOTE]
+========================================================================
+ 
+The Technology Compatability Kit (TCK) documentation is part of the Java Enterprise 
+Edition contribution to the Eclipse Foundation and is not intended for 
+use in relation to Java Enterprise Edition or Java Licensee 
+requirements. The documentation is in the process of being revised to 
+reflect the new Jakarta EE branding. 
+Additional changes will be made as requirements and procedures evolve 
+for Jakarta EE. Where applicable, references to Java EE or Java 
+Enterprise Edition should be considered references to Jakarta EE. 
+ 
+Please see the Title page for additional license information.
+========================================================================
+
 This guide describes how to install, configure, and run the Technology
 Compatibility Kit (TCK) that is used to test the {TechnologyFullName}
 ({TechnologyShortName} {TechnologyVersion}) (JSR {JSR}) technology.
