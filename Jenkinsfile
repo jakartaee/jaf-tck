@@ -18,7 +18,7 @@ spec:
     - "localhost.localdomain"
   containers:
   - name: jaf-tck-ci
-    image: anajosep/cts-jaf:0.1
+    image: jakartaee/cts-jaf-base:0.1
     command:
     - cat
     tty: true
