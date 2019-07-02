@@ -43,7 +43,7 @@ mvn -version
 export ANT_OPTS="-DTS_HOME=$WORKSPACE -DJAVA_HOME=$JAVA_HOME -DJARPATH=$WORKSPACE"
 ant -f release.xml clean mvn
 
-export JAVA_HOME=$JDK9_HOME
+export JAVA_HOME=$JDK11_HOME
 export PATH="$JAVA_HOME/bin:$PATH"
 ant -f release.xml core
 

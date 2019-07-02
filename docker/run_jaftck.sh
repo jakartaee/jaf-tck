@@ -26,10 +26,10 @@ fi
 wget $WGET_PROPS $JAF_BUNDLE_URL -O ${WORKSPACE}/javax.activation.jar
 
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/jaf.jte
-sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JDK9_HOME#g" ${TS_HOME}/lib/jaf.jte
+sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JDK11_HOME#g" ${TS_HOME}/lib/jaf.jte
 sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/jaf.jte
 
-export JAVA_HOME=${JDK9_HOME}
+export JAVA_HOME=${JDK11_HOME}
 export PATH=${JAVA_HOME}/bin:${PATH}
 
 which ant
