@@ -28,7 +28,7 @@ RUN echo "proxy=${HTTPS_PROXY}" >> /etc/yum.conf && \
     chmod -R 775 /root /.m2
 
 ENV JAVA_HOME=/opt/jdk1.8.0_191
-ENV JDK9_HOME=/opt/jdk-11.0.3
+ENV JDK11_HOME=/opt/jdk-11.0.3
 ENV ANT_HOME=/usr/share/ant
 ENV PATH=$JAVA_HOME/bin:$ANT_HOME/bin:$PATH
 
