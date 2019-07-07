@@ -28,6 +28,14 @@ sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/jaf.jte
 mkdir -p ${HOME}/.m2
 
 cd $WORKSPACE
+
+if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
+  #use pre-built tck bundle from this location to run test
+  mkdir -p ${WORKSPACE}/bundles
+  wget  --progress=bar:force --no-cache ${TCK_BUNDLE_BASE_URL}/${TCK_BUNDLE_FILE_NAME} -O ${WORKSPACE}/bundles/jaftck-1.2_latest.zip
+  exit 0
+fi
+
 WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$JAF_BUNDLE_URL" ];then
   export JAF_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
@@ -45,14 +53,23 @@ ant -f release.xml clean mvn
 
 export JAVA_HOME=$JDK11_HOME
 export PATH="$JAVA_HOME/bin:$PATH"
-ant -f release.xml core
-
+if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+  ant -f release.xml core -DuseEFTLicensefile="true"
+else
+  ant -f release.xml core
+fi
 mkdir -p ${WORKSPACE}/bundles
 chmod 777 ${WORKSPACE}/*.zip
 for entry in `ls jaf*.zip`; do
   date=`echo "$entry" | cut -d_ -f2`
   strippedEntry=`echo "$entry" | cut -d_ -f1`
-  echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/${strippedEntry}_latest.zip"
-  cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/${strippedEntry}_latest.zip
-  chmod 777 ${WORKSPACE}/bundles/${strippedEntry}_latest.zip
+  if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
+    echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip"
+    cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip
+    chmod 777 ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip
+  else
+    echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/${strippedEntry}.zip"
+    cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/${strippedEntry}.zip
+    chmod 777 ${WORKSPACE}/bundles/${strippedEntry}.zip
+  fi
 done

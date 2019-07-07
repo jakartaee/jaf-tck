@@ -14,7 +14,13 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-unzip -o ${WORKSPACE}/bundles/jaftck-1.2_latest.zip -d ${WORKSPACE}
+
+if ls ${WORKSPACE}/bundles/*jaftck*.zip 1> /dev/null 2>&1; then
+  unzip ${WORKSPACE}/bundles/*jaftck*.zip -d ${WORKSPACE}
+else
+  echo "[ERROR] TCK bundle not found"
+  exit 1
+fi
 
 export TS_HOME=${WORKSPACE}/jaftck
 
