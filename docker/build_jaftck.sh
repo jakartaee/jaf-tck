@@ -60,7 +60,7 @@ else
 fi
 mkdir -p ${WORKSPACE}/bundles
 chmod 777 ${WORKSPACE}/*.zip
-for entry in `ls jaf*.zip`; do
+for entry in `ls activation*.zip`; do
   date=`echo "$entry" | cut -d_ -f2`
   strippedEntry=`echo "$entry" | cut -d_ -f1`
   if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then

@@ -14,15 +14,15 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-
-if ls ${WORKSPACE}/bundles/*jaftck*.zip 1> /dev/null 2>&1; then
-  unzip ${WORKSPACE}/bundles/*jaftck*.zip -d ${WORKSPACE}
+TCK_NAME=activation
+if ls ${WORKSPACE}/bundles/*${TCK_NAME}-tck*.zip 1> /dev/null 2>&1; then
+  unzip -o ${WORKSPACE}/bundles/*${TCK_NAME}-tck*.zip -d ${WORKSPACE}
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
 
-export TS_HOME=${WORKSPACE}/jaftck
+export TS_HOME=${WORKSPACE}/${TCK_NAME}-tck
 
 
 WGET_PROPS="--progress=bar:force --no-cache"
@@ -45,7 +45,7 @@ which java
 java -version
 
 cd $TS_HOME
-ant -Dreport.dir=$WORKSPACE/JTreport/jaftck -Dwork.dir=$WORKSPACE/JTwork/jaftck  run
+ant -Dreport.dir=$WORKSPACE/JTreport/${TCK_NAME}-tck -Dwork.dir=$WORKSPACE/JTwork/${TCK_NAME}-tck  run
 
 HOST=`hostname -f`
 echo "1 jaftck $HOST" > $WORKSPACE/args.txt
@@ -54,4 +54,4 @@ mkdir -p $WORKSPACE/results/junitreports/
 JT_REPORT_DIR=$WORKSPACE/JTreport
 $JAVA_HOME/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar $WORKSPACE/args.txt $JT_REPORT_DIR $WORKSPACE/results/junitreports/ 
 
-tar zcvf ${WORKSPACE}/jaftck-results.tar.gz $WORKSPACE/JTreport/jaftck $WORKSPACE/JTwork/jaftck $WORKSPACE/results/junitreports/
+tar zcvf ${WORKSPACE}/${TCK_NAME}-tck-results.tar.gz $WORKSPACE/JTreport/${TCK_NAME}-tck $WORKSPACE/JTwork/${TCK_NAME}-tck $WORKSPACE/results/junitreports/
