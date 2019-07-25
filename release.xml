@@ -17,14 +17,14 @@
 
 -->
 
-<project name="JAF TCK release" default="core" basedir=".">
+<project name="activation TCK release" default="core" basedir=".">
 
     <import file="./build.xml"/>
     <tstamp>
         <format property="time.stamp.bundle.string" pattern="dd-MMM-yyyy" locale="en"/>
     </tstamp>
     <property name="date.time" value="${DSTAMP}_${TSTAMP}"/>
-    <property name="zip.fullname" value="jaftck-${version.tck}_${time.stamp.bundle.string}"/>
+    <property name="zip.fullname" value="activation-tck-${version.tck}_${time.stamp.bundle.string}"/>
     <property name="zip.file" value="${zip.fullname}.zip"/>
             
     <target name="javadoc">
@@ -40,7 +40,7 @@
             author="false" 
             version="true" 
             failonerror="true"
-            windowtitle="JAF ${version} TCK">
+            windowtitle="activation ${version} TCK">
             <sourcepath>
                 <pathelement location="${basedir}/tests/api"/>
             </sourcepath>
@@ -93,7 +93,7 @@
                         classes/**,
                         LICENSE.md,
                         harness/**"
-                        prefix="jaftck"/>                        	
+                        prefix="activation-tck"/>                        	
 	</zip>
     </target>
 
