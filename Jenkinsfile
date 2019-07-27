@@ -67,7 +67,7 @@ spec:
             env
             bash -x ${WORKSPACE}/docker/run_jaftck.sh
           """
-          archiveArtifacts artifacts: "jaftck-results.tar.gz"
+          archiveArtifacts artifacts: "*tck-results.tar.gz"
           junit testResults: 'results/junitreports/*.xml', allowEmptyResults: true
         }
       }
