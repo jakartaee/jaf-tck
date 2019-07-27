@@ -14,15 +14,20 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-TCK_NAME=activation
-if ls ${WORKSPACE}/bundles/*${TCK_NAME}-tck*.zip 1> /dev/null 2>&1; then
-  unzip -o ${WORKSPACE}/bundles/*${TCK_NAME}-tck*.zip -d ${WORKSPACE}
+if ls ${WORKSPACE}/bundles/*activation-tck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for activation-tck created during the build phase"
+  unzip -o ${WORKSPACE}/bundles/*activation-tck*.zip -d ${WORKSPACE}
+  TCK_NAME=activation-tck
+elif ls ${WORKSPACE}/bundles/*jaftck*.zip 1> /dev/null 2>&1; then
+  echo "Using stashed bundle for jaftck created during the build phase"
+  unzip ${WORKSPACE}/bundles/*jaftck*.zip -d ${WORKSPACE}
+  TCK_NAME=jaftck
 else
   echo "[ERROR] TCK bundle not found"
   exit 1
 fi
 
-export TS_HOME=${WORKSPACE}/${TCK_NAME}-tck
+export TS_HOME=${WORKSPACE}/${TCK_NAME}
 
 
 WGET_PROPS="--progress=bar:force --no-cache"
@@ -45,13 +50,13 @@ which java
 java -version
 
 cd $TS_HOME
-ant -Dreport.dir=$WORKSPACE/JTreport/${TCK_NAME}-tck -Dwork.dir=$WORKSPACE/JTwork/${TCK_NAME}-tck  run
+ant -Dreport.dir=$WORKSPACE/JTreport/${TCK_NAME} -Dwork.dir=$WORKSPACE/JTwork/${TCK_NAME}  run
 
 HOST=`hostname -f`
-echo "1 jaftck $HOST" > $WORKSPACE/args.txt
+echo "1 $TCK_NAME $HOST" > $WORKSPACE/args.txt
 
 mkdir -p $WORKSPACE/results/junitreports/
 JT_REPORT_DIR=$WORKSPACE/JTreport
 $JAVA_HOME/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar $WORKSPACE/args.txt $JT_REPORT_DIR $WORKSPACE/results/junitreports/ 
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-tck-results.tar.gz $WORKSPACE/JTreport/${TCK_NAME}-tck $WORKSPACE/JTwork/${TCK_NAME}-tck $WORKSPACE/results/junitreports/
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz $WORKSPACE/JTreport/${TCK_NAME} $WORKSPACE/JTwork/${TCK_NAME} $WORKSPACE/results/junitreports/
