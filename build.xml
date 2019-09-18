@@ -17,16 +17,16 @@
 
 -->
 
-<project name="jaftck" default="default" basedir=".">
-    <description>Builds and runs the project jaftck.</description>
+<project name="activation-tck" default="default" basedir=".">
+    <description>Builds and runs the project activation-tck.</description>
 
     <property name="version" value="1.2"/>
     <property name="version.tck" value="1.2.0"/>
 
 
     <property environment="env"/>
-    <dirname property="jaftck.basedir" file="${ant.file.jaftck}"/>
-    <property name="ts.home" value="${jaftck.basedir}"/>
+    <dirname property="tck.basedir" file="${ant.file.activation-tck}"/>
+    <property name="ts.home" value="${tck.basedir}"/>
 
     <property file="${ts.home}/lib/ts.jte"/>
 
@@ -53,7 +53,7 @@
             <isset property="debug"/>
     </condition>
 
-    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/javax.activation.jar"/>
+    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/jakarta.activation.jar"/>
 
     <condition property="java.classes.for.sig.ext"
 		value="bundle/Classes/classes.jar"

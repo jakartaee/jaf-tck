@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,7 +34,7 @@ WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
   export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
 fi
-wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/javax.activation.jar
+wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/jakarta.activation.jar
 
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JDK11_HOME#g" ${TS_HOME}/lib/ts.jte
