@@ -31,14 +31,14 @@ export TS_HOME=${WORKSPACE}/${TCK_NAME}
 
 
 WGET_PROPS="--progress=bar:force --no-cache"
-if [ -z "$JAF_BUNDLE_URL" ];then
-  export JAF_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
+if [ -z "$ACTIVATION_BUNDLE_URL" ];then
+  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
 fi
-wget $WGET_PROPS $JAF_BUNDLE_URL -O ${WORKSPACE}/javax.activation.jar
+wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/javax.activation.jar
 
-sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/jaf.jte
-sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JDK11_HOME#g" ${TS_HOME}/lib/jaf.jte
-sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/jaf.jte
+sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.jte
+sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JDK11_HOME#g" ${TS_HOME}/lib/ts.jte
+sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/ts.jte
 
 export JAVA_HOME=${JDK11_HOME}
 export PATH=${JAVA_HOME}/bin:${PATH}

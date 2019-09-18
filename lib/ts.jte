@@ -42,14 +42,14 @@ TS_HOME=MUST-BE-SET
 ##JAVA_HOME=/usr/jdk1.8
 JAVA_HOME=MUST-BE-SET
 
-# Set this to the directory containing the JAF .jar 
-# file (i.e., javax.activation.jar)
+# Set this to the directory containing the Activation .jar 
+# file (i.e., jakarta.activation.jar)
 JARPATH=MUST-BE-SET
 
 # Adjust these as necessary for Windows or UNIX
 
-##LOCAL_CLASSES=$JARPATH\\javax.activation.jar
-LOCAL_CLASSES=$JARPATH/javax.activation.jar
+##LOCAL_CLASSES=$JARPATH\\jakarta.activation.jar
+LOCAL_CLASSES=$JARPATH/jakarta.activation.jar
 
 ##TESTCLASS=$TS_HOME\\classes
 TESTCLASS=$TS_HOME/classes

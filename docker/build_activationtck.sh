@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,9 @@ echo "export MAVEN_HOME=$MAVEN_HOME"
 echo "export PATH=$PATH"
 
 export TS_HOME=$WORKSPACE
-sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" $TS_HOME/lib/jaf.jte
-sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/jaf.jte
-sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/jaf.jte
+sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" $TS_HOME/lib/ts.jte
+sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/ts.jte
+sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/ts.jte
 
 mkdir -p ${HOME}/.m2
 
@@ -37,10 +37,10 @@ if [ ! -z "$TCK_BUNDLE_BASE_URL" ]; then
 fi
 
 WGET_PROPS="--progress=bar:force --no-cache"
-if [ -z "$JAF_BUNDLE_URL" ];then
-  export JAF_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
+if [ -z "$ACTIVATION_BUNDLE_URL" ];then
+  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/jakarta.activation/1.2.1/jakarta.activation-1.2.1.jar
 fi
-wget $WGET_PROPS $JAF_BUNDLE_URL -O javax.activation.jar
+wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O jakarta.activation.jar
 
 which ant
 ant -version
@@ -60,13 +60,13 @@ else
 fi
 mkdir -p ${WORKSPACE}/bundles
 chmod 777 ${WORKSPACE}/*.zip
-for entry in `ls activation*.zip`; do
+for entry in `ls activation-*.zip`; do
   date=`echo "$entry" | cut -d_ -f2`
   strippedEntry=`echo "$entry" | cut -d_ -f1`
   if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
-    echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip"
-    cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip
-    chmod 777 ${WORKSPACE}/bundles/eclipse-${strippedEntry}.zip
+    echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/jakarta-${strippedEntry}.zip"
+    cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/jakarta-${strippedEntry}.zip
+    chmod 777 ${WORKSPACE}/bundles/jakarta-${strippedEntry}.zip
   else
     echo "copying ${WORKSPACE}/$entry to ${WORKSPACE}/bundles/${strippedEntry}.zip"
     cp ${WORKSPACE}/$entry ${WORKSPACE}/bundles/${strippedEntry}.zip

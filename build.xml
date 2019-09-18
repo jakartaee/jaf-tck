@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2012, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2012, 2019 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,7 @@
     <dirname property="jaftck.basedir" file="${ant.file.jaftck}"/>
     <property name="ts.home" value="${jaftck.basedir}"/>
 
-    <property file="${ts.home}/lib/jaf.jte"/>
+    <property file="${ts.home}/lib/ts.jte"/>
 
     <property name="dir.sep"       value="${file.separator}"/>
     <property name="dirsep"        value="${file.separator}"/>
@@ -147,9 +147,9 @@
             <arg line=" -batch" />
             <arg line=" -ts tests/testsuite.html" />
             <arg line=" -workdir ${work.dir}" />
-            <arg line=" -envFiles ${ts.home}/lib/jaf.jte" />
+            <arg line=" -envFiles ${ts.home}/lib/ts.jte" />
             <arg line=" -env jafUnix" />
-            <arg line=" -excludeList ${ts.home}/lib/jaf.jtx" />
+            <arg line=" -excludeList ${ts.home}/lib/ts.jtx" />
             <arg line=" -timeoutFactor 1" />
             <arg line=" ${tests.arg}" />
             <arg line=" -runtests -writereport ${report.dir}"/>
@@ -167,7 +167,7 @@
         -->
 
         <javatest>
-            <arg    line="-open ${ts.home}/lib/jaf.jti" />
+            <arg    line="-open ${ts.home}/lib/ts.jti" />
             <arg    line="-EsysProps" />
         </javatest>
     </presetdef>

@@ -1,4 +1,4 @@
-Quick Start Instructions for JAF TCK
+Quick Start Instructions for Jakarta Activation TCK
 
 ================================
 Running the TCK from the source 
@@ -20,7 +20,7 @@ Running the TCK from the source
 6. In TCKHOME, execute 'ant build'.  This will compile all source under
    $TCKHOME/tests and $TCKHOME/harness into $TCKHOME/classes.
    This invocation of ant must use JDK 9 or newer.
-7. Open $TCKHOME/lib/jaf.jte for editing.
+7. Open $TCKHOME/lib/ts.jte for editing.
    In the file set the TS_HOME, JARPATH and JAVA_HOME.
    JAVA_HOME must be set to JDK 9 or newer.
    Save and close the file.
@@ -32,7 +32,7 @@ Running the TCK from the source
    Alternatively, you can run 'ant gui' to start the TCK in gui mode.
 
     If you are running on Windows, change the following property in
-    lib/jaf.jti:
+    lib/ts.jti:
 
     jtwiz.environment.env=jafWindows
 
@@ -49,15 +49,15 @@ Running the TCK from the source
 2. If you need to record a sig file, in TCKHOME, execute 'ant record.sigtest'.
    This will create a new sig file in TCKHOME for the version of Java SE you
    are using. 
-3. Open $TCKHOME/lib/jaf.jte for editing.
+3. Open $TCKHOME/lib/ts.jte for editing.
    In the file, unset the TCKHOME, JARPATH, and JAVA_HOME
    variables. Save and close the file. 
 4. In the workspace now execute:
      ant -f release.xml [-Dversion=tck_version]
 
-   Where tck_version is the jaf TCK version number
+   Where tck_version is the Activation TCK version number
 
-   This command zips the necessary files into jaftck-[tck_version]_[date/time].zip.
+   This command zips the necessary files into activation-tck-[tck_version].zip.
 
    Note that this command assumes the TCK will be installed in a directory
-   named "jaftck".
+   named "activation-tck".
