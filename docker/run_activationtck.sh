@@ -32,7 +32,7 @@ export TS_HOME=${WORKSPACE}/${TCK_NAME}
 
 WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
-  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/javax.activation/1.2.0/javax.activation-1.2.0.jar
+  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/jakarta.activation/1.2.2/jakarta.activation-1.2.2.jar
 fi
 wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/jakarta.activation.jar
 
