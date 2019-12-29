@@ -1,0 +1,11 @@
+copyright-exclude
+LICENSE.md
+LICENSE_EFTL.md
+NOTICE
+Jenkinsfile
+.jar
+.sig
+tests/testsuite.jtt
+tests/api/javasoft/sqe/tests/jakarta/activation/testlist
+docker-images/README
+docker-images/Dockerfile
