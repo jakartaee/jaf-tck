@@ -2,6 +2,7 @@ copyright-exclude
 LICENSE.md
 LICENSE_EFTL.md
 NOTICE
+QuickStart.txt
 Jenkinsfile
 .jar
 .sig
