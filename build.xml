@@ -17,11 +17,11 @@
 
 -->
 
-<project name="activation-tck" default="default" basedir=".">
+<project name="activation-tck" default="default" basedir="." xmlns:if="ant:if">
     <description>Builds and runs the project activation-tck.</description>
 
-    <property name="version" value="1.2"/>
-    <property name="version.tck" value="1.2.0"/>
+    <property name="version" value="2.0"/>
+    <property name="version.tck" value="2.0.0-rc1"/>
 
 
     <property environment="env"/>
@@ -55,28 +55,29 @@
 
     <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/jakarta.activation.jar"/>
 
+    <!-- Does the current runtime support modules? -->
+    <condition property="jdk.modules" value="false" else="true">
+	<or>
+	    <contains string="${java.version}" substring="1.7" />
+	    <contains string="${java.version}" substring="1.8" />
+	</or>
+	<!-- anything else is JDK9+ -->
+    </condition>
     <condition property="java.classes.for.sig.ext"
-		value="bundle/Classes/classes.jar"
+		value="lib/modules"
                 else="lib/rt.jar">
-        <and>
-            <os family="mac"/>
-            <or>
-                <contains string="${java.version}" substring="1.6" />
-                <contains string="${java.version}" substring="1.5" />
-                <contains string="${java.version}" substring="1.4" />
-            </or>
-        </and>
+	<istrue value="${jdk.modules}"/>
     </condition>
 
     <target name="build"
             description="Compiles all sources to the classes directory">
 		<javac includeantruntime="false" deprecation="yes"
-			source="9" target="9"
+			source="8" target="8"
 			optimize="true" srcdir="tests"
 			classpath="${class.path}" destdir="${class.dir}"
 			debug="on" />
                 <javac includeantruntime="false" deprecation="yes"
-			source="9" target="9"
+			source="8" target="8"
 			optimize="true" srcdir="harness"
 			classpath="${class.path}" destdir="${class.dir}"
 			debug="on" />
@@ -106,10 +107,12 @@
                 <arg value="-Classpath"/>
                 <arg value="${java.home}/${java.classes.for.sig.ext}${pathsep}${class.path}"/>
                 <arg value="-Package"/>
-                <arg value="javax.activation"/>
+                <arg value="jakarta.activation"/>
                 <arg value="-FileName"/>
-                <arg value="${ts.home}/tests/javax.activation_${version}_java_${java.specification.version}.sig"/>
+                <arg value="${ts.home}/tests/jakarta.activation_${version}_java_${java.specification.version}.sig"/>
                 <arg value="-Static"/>
+                <arg value="-Xjimage" if:true="${jdk.modules}"/>
+                <arg value="${java.home}/bin/jimage" if:true="${jdk.modules}"/>
         </java>
     </target>
 

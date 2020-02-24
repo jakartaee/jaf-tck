@@ -1,2 +1,2 @@
-** `javax.activation`
+** `jakarta.activation`
 

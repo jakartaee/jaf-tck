@@ -7,13 +7,13 @@ Running the TCK from the source
 1. Checkout TCK workspace in TCKHOME (e.g., "jaf-tck).
      git clone git@github.com:eclipse-ee4j/jaf-tck.git
    Change directory to $TCKHOME.
-2. Place javax.activation.jar in any location. Let's call it JARPATH. 
+2. Place jakarta.activation.jar in any location. Let's call it JARPATH. 
    It's usually simplest to just put them in $TCKHOME.
 3. Set CLASSPATH to
-     $TCKHOME/javatest.jar:$JARPATH/javax.activation.jar
+     $TCKHOME/javatest.jar:$JARPATH/jakarta.activation.jar
     
      on Windows:
-     %TCKHOME%\javatest.jar;%JARPATH%\javax.activation.jar
+     %TCKHOME%\javatest.jar;%JARPATH%\jakarta.activation.jar
 
 4. Set ANT_HOME to $TCKHOME/tools/ant.
 5. Add $ANT_HOME/bin to your path.
@@ -26,7 +26,7 @@ Running the TCK from the source
    Save and close the file.
 8. In tests/SignatureTest.html, change the sig file name to match the version of
    Java SE you are using.  e.g. for Java SE 9, it should say
-   "-FileName javax.activation_1.2_java_9.sig" 
+   "-FileName jakarta.activation_1.2_java_9.sig" 
 9. In $TCKHOME, execute the following command to start the TCK in batch mode:
      'ant run'
    Alternatively, you can run 'ant gui' to start the TCK in gui mode.

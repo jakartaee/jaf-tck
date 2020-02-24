@@ -38,7 +38,7 @@ fi
 
 WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
-  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/jakarta.activation/1.2.1/jakarta.activation-1.2.1.jar
+  export ACTIVATION_BUNDLE_URL=http://central.maven.org/maven2/com/sun/activation/jakarta.activation/2.0.0-rc1/jakarta.activation-2.0.0-rc1.jar
 fi
 wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O jakarta.activation.jar
 
