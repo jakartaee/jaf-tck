@@ -22,13 +22,14 @@
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.5</version>
+        <version>1.0.6</version>
+        <relativePath/>
     </parent>
     <groupId>com.sun.activation</groupId>
     <artifactId>tck_ug</artifactId>
     <packaging>pom</packaging>
-    <version>1.2.0-SNAPSHOT</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for JavaBeans Activation Framework 1.2 for Jakarta EE, Release 1.2</name>
+    <version>2.0.0-SNAPSHOT</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for JavaBeans Activation Framework 2.0 for Jakarta EE, Release 2.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
