@@ -41,14 +41,14 @@
         <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
         <jruby.version>9.2.6.0</jruby.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
-        <status>DRAFT</status>
+        <status></status>
         <doc.pdf>JAF-TCK-Users-Guide.pdf</doc.pdf>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <distributionManagement>
         <site>
-            <url>scm:git:git@github.com:javaee/activation-tck.git</url>
+            <url>scm:git:git@github.com:eclipse-ee4j/jaf-tck.git</url>
         </site>
     </distributionManagement>
 
