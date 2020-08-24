@@ -40,11 +40,12 @@ slashes as a path separator instead.
 
 1.  Set the following environment variables in your shell environment:
   a.  `JAVA_HOME` to the directory in which Java SE {SEversion} is installed
-  b.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
+  b.  `ANT_HOME` to the directory in which Apache Ant {AntVersion} is installed
+  c.  `TS_HOME` to the directory in which the {TechnologyShortName} TCK
   {TechnologyVersion} software is installed
-  c.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
+  d.  +{TechnologyHomeEnv}+ to the directory in which the {TechnologyShortName}
   {TechnologyVersion} CI has been installed
-  d.  `PATH` to include the following directories: `JAVA_HOME/bin`
+  e.  `PATH` to include the following directories: `JAVA_HOME/bin`
   and `ANT_HOME/bin`
 2.  Edit your +{jteFileName}+ file and set the following
 environment variables:
