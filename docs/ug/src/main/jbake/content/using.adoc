@@ -139,7 +139,7 @@ A report is created, and you are asked whether you want to view it.
 +
 [source]
 ----
-ant runclient
+ant run
 ----
 +
 The tests in the directory and its subdirectories are run.

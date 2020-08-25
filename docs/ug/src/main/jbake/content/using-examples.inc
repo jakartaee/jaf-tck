@@ -23,7 +23,7 @@ following commands:
 [source,subs="attributes"]
 ----
 cd {sigTestDirectoryExample}
-ant run
+ant -Dtests=SignatureTest.html run
 ----
 
 [[GCMBV]]
@@ -35,8 +35,7 @@ To run a single test directory, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {singleTestDirectoryExample}
-ant run
+ant -Dtests={singleTestDirectoryExample} run
 ----
 
 [[GCMCA]]
@@ -48,6 +47,5 @@ To run a subset of test directories, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {subsetTestDirectoryExample}
-ant run
+ant -Dtests={subsetTestDirectoryExample} run
 ----
