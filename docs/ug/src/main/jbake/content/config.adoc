@@ -36,6 +36,7 @@ running the {TechnologyShortName} TCK.
 
 include::config.inc[]
 
+[[GBFUY]][[using-the-javatest-harness-software]]
 
 4.4 Using the JavaTest Harness Software
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
