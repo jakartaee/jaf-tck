@@ -3,13 +3,13 @@ NOTE TO WRITERS:
 These CLI examples can be customized as necessary.
 ///////////////////////////////////////////////////////////////////////
 
-1.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
+1.  Change to directory `<TS_HOME>`.
 2.  Start JavaTest using the following command:
 +
 --
 [source,oac_no_warn]
 ----
-ant runclient
+ant run
 ----
 --
 
@@ -23,7 +23,7 @@ following commands:
 [source,subs="attributes"]
 ----
 cd {sigTestDirectoryExample}
-ant runclient
+ant -Dtests=SignatureTest.html run
 ----
 
 [[GCMBV]]
@@ -35,8 +35,7 @@ To run a single test directory, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {singleTestDirectoryExample}
-ant runclient
+ant -Dtests={singleTestDirectoryExample} run
 ----
 
 [[GCMCA]]
@@ -48,6 +47,5 @@ To run a subset of test directories, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {subsetTestDirectoryExample}
-ant runclient
+ant -Dtests={subsetTestDirectoryExample} run
 ----
