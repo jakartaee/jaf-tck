@@ -32,14 +32,16 @@ spec:
   }
   parameters {
     string(name: 'ACTIVATION_BUNDLE_URL', 
-           defaultValue: 'https://repo1.maven.org/maven2/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar',
+           defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar',
            description: 'URL required for downloading JAF implementation jar' )
     string(name: 'TCK_BUNDLE_BASE_URL',
            defaultValue: '',
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
     string(name: 'TCK_BUNDLE_FILE_NAME', 
-           defaultValue: 'activation-tck-2.0.zip', 
+           defaultValue: 'jakarta-activation-tck-2.0.0.zip', 
 	   description: 'Name of bundle file to be appended to the base url' )
+    choice(name: 'JDK', choices: 'JDK8\nJDK11',
+           description: 'Java SE Version to be used for running TCK either JDK8/JDK11' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
   }
