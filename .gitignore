@@ -1,2 +1,7 @@
+/activation-tck-*.zip
+/classes/
+/docs/javadocs/
+/docs/ug/src/main/jbake/content/toc.adoc
+/version
+
 target/
-docs/ug/src/main/jbake/content/toc.adoc
