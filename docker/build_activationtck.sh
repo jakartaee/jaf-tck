@@ -62,7 +62,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
   ant -f release.xml clean core -DuseEFTLicensefile="true"
 else
-  ant -f release.xml core
+  ant -f release.xml clean core
 fi
 mkdir -p ${WORKSPACE}/bundles
 chmod 777 ${WORKSPACE}/*.zip
