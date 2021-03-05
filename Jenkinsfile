@@ -18,7 +18,7 @@ spec:
     - "localhost.localdomain"
   containers:
   - name: activation-tck-ci
-    image: jakartaee/cts-jaf-base:0.1
+    image: jakartaee/cts-jaf-base:0.2
     command:
     - cat
     tty: true
