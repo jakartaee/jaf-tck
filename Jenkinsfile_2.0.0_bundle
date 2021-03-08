@@ -51,7 +51,7 @@ spec:
             env
             mkdir bundles
             cd bundles
-            wget -q ${TCK_BUNDLE_URL} -O activation-bundles.zip
+            wget -q ${TCK_BUNDLE_URL} -O activation-tck.zip
           """
           archiveArtifacts artifacts: 'bundles/*.zip'
           stash includes: 'bundles/*.zip', name: 'activation-bundles'
