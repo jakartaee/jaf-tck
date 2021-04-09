@@ -21,11 +21,6 @@ echo "export MAVEN_HOME=$MAVEN_HOME"
 echo "export PATH=$PATH"
 
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-fi
-
 export TS_HOME=$WORKSPACE
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" $TS_HOME/lib/ts.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/ts.jte
@@ -56,7 +51,6 @@ which mvn
 mvn -version
 
 export ANT_OPTS="-DTS_HOME=$WORKSPACE -DJAVA_HOME=$JAVA_HOME -DJARPATH=$WORKSPACE"
-export JAVA_HOME=$JDK11_HOME
 export PATH="$JAVA_HOME/bin:$PATH"
 
 if [[ "$LICENSE" == "EFTL" || "$LICENSE" == "eftl" ]]; then
