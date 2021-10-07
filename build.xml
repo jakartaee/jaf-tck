@@ -38,10 +38,12 @@
     <property file="${bin.dir}/ts.jte"/>
     <property name="lib.dir" value="${ts.home}${file.separator}lib"/>
     <property name="class.dir" value="${ts.home}${file.separator}classes"/>
+	<property name="class.pluggability.dir" value="${ts.home}${file.separator}classes-pluggability"/>
     <property name="tests.dir" value="${ts.home}${file.separator}tests"/>
     <property name="work.dir" value="${ts.home}/JTwork"/>
     <property name="report.dir" value="${ts.home}/JTreport"/>
     <mkdir dir="${class.dir}"/>
+	<mkdir dir="${class.pluggability.dir}"/>
     <mkdir dir="${work.dir}"/>
     <mkdir dir="${report.dir}"/>
 
@@ -53,7 +55,7 @@
             <isset property="debug"/>
     </condition>
 
-    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/jakarta.activation.jar"/>
+    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/jakarta.activation-api.jar"/>
 
     <!-- Does the current runtime support modules? -->
     <condition property="jdk.modules" value="false" else="true">
@@ -76,11 +78,19 @@
 			optimize="true" srcdir="tests"
 			classpath="${class.path}" destdir="${class.dir}"
 			debug="on" />
-                <javac includeantruntime="false" deprecation="yes"
+    	<javac includeantruntime="false" deprecation="yes"
+    	            source="11" target="11"
+    	            optimize="true" srcdir="pluggability"
+    	            classpath="${class.path}" destdir="${class.pluggability.dir}"
+    	            debug="on" />
+        <javac includeantruntime="false" deprecation="yes"
 			source="11" target="11"
 			optimize="true" srcdir="harness"
 			classpath="${class.path}" destdir="${class.dir}"
 			debug="on" />
+    	<copy todir="${class.pluggability.dir}/META-INF">
+    	    <fileset dir="pluggability/META-INF"/>
+    	</copy>
     </target>
 
 
@@ -88,11 +98,13 @@
             description="Cleans all classes from the classes directory">
         <delete failonerror="false" includeEmptyDirs="true">
             <fileset dir="${class.dir}" includes="*/**"/>
+        	<fileset dir="${class.pluggability.dir}" includes="*/**"/>
         </delete>
     </target>
 
     <target name="run"
             description="Executes the JAF TCK in batch mode">
+        <echo message="Classpath ${class.path}"/>
         <javatest.batch/>
     </target>
 
@@ -125,7 +137,6 @@
           values, refer to the included XML below that shows the content of
           the javatest presetdef.
         -->
-
         <java classname="com.sun.javatest.tool.Main"
               failonerror="${failOnError}" fork="yes" >
             <classpath>

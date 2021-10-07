@@ -89,3 +89,5 @@
 ./URLDataSource/getOutputStream_Test.java
 ./URLDataSource/getURL_Test.java
 ./UnsupportedDataTypeException/UnsupportedDTException_Test.java
+./Pluggability/MailcapRegistryProvider_Test.java
+./Pluggability/MimeTypeRegistryProvider_Test.java

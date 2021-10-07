@@ -5,3 +5,9 @@
 /version
 
 target/
+/bin/
+
+.classpath
+.project
+JTreport/
+JTwork/
