@@ -38,18 +38,23 @@ TS_HOME=MUST-BE-SET
 
 # Set this to the installation of your JDK.
 
-##JAVA_HOME=D:\\jdk1.8
-##JAVA_HOME=/usr/jdk1.8
+##JAVA_HOME=D:\\jdk-11
+##JAVA_HOME=/usr/jdk-11
 JAVA_HOME=MUST-BE-SET
 
 # Set this to the directory containing the Activation .jar 
-# file (i.e., jakarta.activation.jar)
+# file (i.e., jakarta.activation-api.jar)
 JARPATH=MUST-BE-SET
 
 # Adjust these as necessary for Windows or UNIX
 
-##LOCAL_CLASSES=$JARPATH\\jakarta.activation.jar
-LOCAL_CLASSES=$JARPATH/jakarta.activation.jar
+# Set the path to the jakarta.activation-api.jar
+#API_JAR=${JARPATH}\\jakarta.activation-api.jar
+API_JAR=${JARPATH}/jakarta.activation-api.jar
+
+# Set the Activation implementation path 
+##LOCAL_CLASSES=$JARPATH\\angus-activation.jar
+LOCAL_CLASSES=$JARPATH/angus-activation.jar
 
 ##TESTCLASS=$TS_HOME\\classes
 TESTCLASS=$TS_HOME/classes
@@ -120,7 +125,7 @@ env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir/../classes$:$testClassDir:\
 	$javatestClassDir$:$extraOtherJVMClassPath \
 	HOME=${user.home} \
-	$JAVA_HOME/bin/java -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME/bin/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
 
 
 #---------- JDK/Windows NT configuration ---------------------------------------
@@ -149,4 +154,4 @@ env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir$/..$/classes$:$javatestClassDir$:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
-	$JAVA_HOME$/bin$/java -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME$/bin$/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
