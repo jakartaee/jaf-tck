@@ -53,7 +53,8 @@
             <isset property="debug"/>
     </condition>
 
-    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${JARPATH}/jakarta.activation.jar"/>
+	<property name="module.path" value="${API_JAR}"/>
+    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar"/>
 
     <!-- Does the current runtime support modules? -->
     <condition property="jdk.modules" value="false" else="true">
@@ -74,9 +75,11 @@
 		<javac includeantruntime="false" deprecation="yes"
 			source="11" target="11"
 			optimize="true" srcdir="tests"
-			classpath="${class.path}" destdir="${class.dir}"
-			debug="on" />
-                <javac includeantruntime="false" deprecation="yes"
+			classpath="${class.path}" modulepath="${module.path}" destdir="${class.dir}"
+			debug="on">
+			<compilerarg line="--add-modules ALL-MODULE-PATH"/>
+		</javac>
+        <javac includeantruntime="false" deprecation="yes"
 			source="11" target="11"
 			optimize="true" srcdir="harness"
 			classpath="${class.path}" destdir="${class.dir}"
@@ -127,11 +130,9 @@
         -->
 
         <java classname="com.sun.javatest.tool.Main"
-              failonerror="${failOnError}" fork="yes" >
-            <classpath>
-                <pathelement path="${class.path}"/>
-            </classpath>	
-	    <sysproperty key="testDebug" value="${tests.debug}"/>
+              failonerror="${failOnError}" fork="yes" classpath="${class.path}" modulepath="${module.path}">
+        	<jvmarg line="--add-modules ALL-MODULE-PATH"/>
+        	<sysproperty key="testDebug" value="${tests.debug}"/>
         </java>
     </presetdef>
 

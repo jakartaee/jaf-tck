@@ -82,6 +82,7 @@
 ./MimetypesFileTypeMap/getContentType_Test.java
 ./MimetypesFileTypeMap/loadFromConf_Test.java
 ./MimetypesFileTypeMap/loadFromLib_Test.java
+./Module/UnnamedModule_Test.java
 ./URLDataSource/URLDataSource_Test.java
 ./URLDataSource/getContentType_Test.java
 ./URLDataSource/getInputStream_Test.java
