@@ -20,7 +20,7 @@ Running the TCK from the source
 6. In TCKHOME, execute 'ant build'.  This will compile all source under
    $TCKHOME/tests and $TCKHOME/harness into $TCKHOME/classes.
    This invocation of ant must use JDK 9 or newer.
-7. Open $TCKHOME/lib/ts.jte for editing.
+7. Open $TCKHOME/lib/ts.jte and $TCKHOME/lib/ts.pluggability.jte for editing.
    In the file set the TS_HOME, JARPATH and JAVA_HOME.
    JAVA_HOME must be set to JDK 9 or newer.
    Save and close the file.
@@ -49,7 +49,7 @@ Running the TCK from the source
 2. If you need to record a sig file, in TCKHOME, execute 'ant record.sigtest'.
    This will create a new sig file in TCKHOME for the version of Java SE you
    are using. 
-3. Open $TCKHOME/lib/ts.jte for editing.
+3. Open $TCKHOME/lib/ts.jte and $TCKHOME/lib/ts.pluggability.jte for editing.
    In the file, unset the TCKHOME, JARPATH, and JAVA_HOME
    variables. Save and close the file. 
 4. In the workspace now execute:

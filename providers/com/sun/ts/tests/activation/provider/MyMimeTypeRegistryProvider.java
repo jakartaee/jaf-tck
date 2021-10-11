@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package javasoft.sqe.tests.jakarta.activation.provider;
+package com.sun.ts.tests.activation.provider;
 
 import java.io.IOException;
 import java.io.InputStream;

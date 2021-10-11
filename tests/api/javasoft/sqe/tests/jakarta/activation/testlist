@@ -82,6 +82,7 @@
 ./MimetypesFileTypeMap/getContentType_Test.java
 ./MimetypesFileTypeMap/loadFromConf_Test.java
 ./MimetypesFileTypeMap/loadFromLib_Test.java
+./Module/UnnamedModule_Test.java
 ./URLDataSource/URLDataSource_Test.java
 ./URLDataSource/getContentType_Test.java
 ./URLDataSource/getInputStream_Test.java
@@ -89,5 +90,3 @@
 ./URLDataSource/getOutputStream_Test.java
 ./URLDataSource/getURL_Test.java
 ./UnsupportedDataTypeException/UnsupportedDTException_Test.java
-./Pluggability/MailcapRegistryProvider_Test.java
-./Pluggability/MimeTypeRegistryProvider_Test.java

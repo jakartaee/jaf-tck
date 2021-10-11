@@ -27,8 +27,11 @@ echo "export PATH=$PATH"
 
 export TS_HOME=$WORKSPACE
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" $TS_HOME/lib/ts.jte
+sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" $TS_HOME/lib/ts.pluggability.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/ts.jte
+sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" $TS_HOME/lib/ts.pluggability.jte
 sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/ts.jte
+sed -i "s#^JARPATH=.*#JARPATH=$TS_HOME#g" $TS_HOME/lib/ts.pluggability.jte
 
 mkdir -p ${HOME}/.m2
 

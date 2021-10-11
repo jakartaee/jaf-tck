@@ -17,17 +17,11 @@
 package javasoft.sqe.tests.jakarta.activation.Pluggability;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.Iterator;
-import java.util.ServiceLoader;
 
 import com.sun.javatest.Status;
 import com.sun.javatest.lib.MultiTest;
 
 import jakarta.activation.MimetypesFileTypeMap;
-import jakarta.activation.spi.MimeTypeRegistryProvider;
 
 /**
  * Checks that a custom implementation of MimeTypeRegistryProvider can be loaded by SPI added
@@ -41,29 +35,16 @@ public class MimeTypeRegistryProvider_Test extends MultiTest {
         lStatus.exit();
     }
 
-    private void addCustomProvidersInClasspath() throws MalformedURLException, ClassNotFoundException {
-        String currentClasspath = getClass().getResource("/").toString();
-        URL pluggabilityClasspath = new URL(currentClasspath.replaceFirst("/classes", "/classes-pluggability"));
-        URL[] paths = new URL[] {pluggabilityClasspath};
-        URLClassLoader classLoader = new URLClassLoader(paths, Thread.currentThread().getContextClassLoader());
-        Thread.currentThread().setContextClassLoader(classLoader);
-        Thread.currentThread().getContextClassLoader().loadClass("javasoft.sqe.tests.jakarta.activation.provider.MyMimeTypeRegistryProvider");
-    }
-
     public Status test() {
         try {
-            addCustomProvidersInClasspath();
             MimetypesFileTypeMap mimetypes = new MimetypesFileTypeMap("MimeTypeRegistryProvider_Test");
             if ("MIMEType/Pluggability_Test".equals(mimetypes.getContentType("anything.anything"))) {
-                return Status.passed(
-                        "javasoft.sqe.tests.jakarta.activation.provider.MyMimeTypeRegistryProvider was loaded correctly");
+                return Status.passed("com.sun.ts.tests.activation.provider.MyMimeTypeRegistryProvider was loaded correctly");
             } else {
-                return Status
-                        .failed("javasoft.sqe.tests.jakarta.activation.provider.MyMimeTypeRegistryProvider was NOT loaded");
+                return Status.failed("com.sun.ts.tests.activation.provider.MyMimeTypeRegistryProvider was NOT loaded");
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return Status.error(e.getMessage());
+        } catch (IOException e) {
+            return Status.failed(e.getMessage());
         }
     }
 

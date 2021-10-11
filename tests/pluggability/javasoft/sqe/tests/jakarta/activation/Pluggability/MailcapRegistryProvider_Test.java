@@ -17,9 +17,6 @@
 package javasoft.sqe.tests.jakarta.activation.Pluggability;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 
 import com.sun.javatest.Status;
 import com.sun.javatest.lib.MultiTest;
@@ -38,30 +35,16 @@ public class MailcapRegistryProvider_Test extends MultiTest {
         lStatus.exit();
     }
 
-    private void addCustomProvidersInClasspath() throws MalformedURLException, ClassNotFoundException {
-        String currentClasspath = getClass().getResource("/").toString();
-        URL pluggabilityClasspath = new URL(currentClasspath.replaceFirst("/classes", "/classes-pluggability"));
-        URL[] paths = new URL[] {pluggabilityClasspath};
-        URLClassLoader classLoader = new URLClassLoader(paths, Thread.currentThread().getContextClassLoader());
-        Thread.currentThread().setContextClassLoader(classLoader);
-        Thread.currentThread().getContextClassLoader().loadClass("javasoft.sqe.tests.jakarta.activation.provider.MyMailcapRegistryProvider");
-    }
-
     public Status test() {
         try {
-            
-            addCustomProvidersInClasspath();
             MailcapCommandMap mailcap = new MailcapCommandMap("MailcapRegistryProvider_Test");
             if (mailcap.getMimeTypes() != null && mailcap.getMimeTypes()[0].equals("MIME/Pluggability_Test")) {
-                return Status.passed(
-                        "javasoft.sqe.tests.jakarta.activation.provider.MyMailcapRegistryProvider was loaded correctly");
+                return Status.passed("com.sun.ts.tests.activation.provider.MyMailcapRegistryProvider was loaded correctly");
             } else {
-                return Status
-                        .failed("javasoft.sqe.tests.jakarta.activation.provider.MyMailcapRegistryProvider was NOT loaded");
+                return Status.failed("com.sun.ts.tests.activation.provider.MyMailcapRegistryProvider was NOT loaded");
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return Status.error(e.getMessage());
+        } catch (IOException e) {
+            return Status.failed(e.getMessage());
         }
     }
 
