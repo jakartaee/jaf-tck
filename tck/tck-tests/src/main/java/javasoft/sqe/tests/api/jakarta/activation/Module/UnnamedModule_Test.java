@@ -38,11 +38,15 @@ public class UnnamedModule_Test {
     }
 
     public Status run() {
-        String moduleName = DataSource.class.getModule().getName();
-        if (ACTIVATION_API_MODULE.equals(moduleName)) {
-            return Status.passed(moduleName);
-        } else { 
-            return Status.failed(ACTIVATION_API_MODULE + " is not visible ");
+        if (DataSource.class.getModule().isNamed()) {
+            String moduleName = DataSource.class.getModule().getName();
+            if (ACTIVATION_API_MODULE.equals(moduleName)) {
+                return Status.passed(moduleName);
+            } else { 
+                return Status.failed(ACTIVATION_API_MODULE + " is not visible ");
+            }
+        } else {
+            return Status.passed("Skipping test because it is not running in modules");
         }
     }
 

@@ -39,8 +39,6 @@
 		<activation-tck.version>1.0.0-SNAPSHOT</activation-tck.version>
 		<activation.version>2.1.0-SNAPSHOT</activation.version>
 		<jupiter-api.version>5.8.1</jupiter-api.version>
-		<activation.path>${project.build.directory}/lib</activation.path>
-		<activation.final.name>jakarta.activation-api-${activation.version}.jar</activation.final.name>
 	</properties>
 
 	<dependencies>
@@ -60,14 +58,10 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>3.2.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>3.0.0-M5</version>
-				</plugin>
+	            <plugin>
+	                <artifactId>maven-surefire-plugin</artifactId>
+	                <version>3.0.0-M5</version>
+	            </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

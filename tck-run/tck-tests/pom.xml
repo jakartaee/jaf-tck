@@ -48,24 +48,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${activation.path}</outputDirectory>
-							<includeArtifactIds>jakarta.activation-api</includeArtifactIds>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- FIXME Sigtest fails because version of signature file version is 
 				not understood. It needs to be regenerated. See https://github.com/eclipse-ee4j/mail-tck/pull/29#discussion_r704049570 -->
 			<plugin>
@@ -78,16 +62,6 @@
 					<failIfNoTests>true</failIfNoTests>
 					<forkCount>1</forkCount>
 					<reuseForks>false</reuseForks>
-					<!-- Required for test javasoft.sqe.tests.api.jakarta.activation.Module.UnnamedModule_Test -->
-					<argLine>--add-modules ALL-MODULE-PATH --module-path
-						${activation.path}/${activation.final.name}</argLine>
-					<!-- Next lines should be uncommented because jakarta.activation-api 
-						is specified already in module-path. But maven-surefire-plugin fails with 
-						ClassNotFoundException because previous module-path is not shown in the process. 
-						Possibly is a bug in maven-surefire-plugin -->
-					<!-- <classpathDependencyExcludes> -->
-					<!-- <classpathDependencyExclude>jakarta.activation:jakarta.activation-api</classpathDependencyExclude> -->
-					<!-- </classpathDependencyExcludes> -->
 				</configuration>
 			</plugin>
 		</plugins>
