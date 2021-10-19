@@ -20,8 +20,8 @@
 <project name="activation-tck" default="default" basedir="." xmlns:if="ant:if">
     <description>Builds and runs the project activation-tck.</description>
 
-    <property name="version" value="2.0"/>
-    <property name="version.tck" value="2.0.1"/>
+    <property name="version" value="2.1"/>
+    <property name="version.tck" value="2.1.0"/>
 
 
     <property environment="env"/>
