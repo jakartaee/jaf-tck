@@ -40,7 +40,26 @@ It also verifies the existence and correct modifiers of public fields.
 	<TR><TD><B>executeClass</B> <TD>com.sun.tdk.signaturetest.SignatureTest
 	<TR><TD><B>executeArgs</B> <TD>-TestURL $testURL
 	-Package jakarta.activation
-	-FileName jakarta.activation_2.1_java_${java.specification.version}.sig
+	-FileName jakarta.activation_2.1.sig
+	-exclude java.util.Map
+    -exclude java.lang.Object
+    -exclude java.io.ByteArrayInputStream
+    -exclude java.io.InputStream
+    -exclude java.lang.Deprecated
+    -exclude java.io.Writer
+    -exclude java.io.OutputStream
+    -exclude java.util.List
+    -exclude java.util.Collection
+    -exclude java.lang.instrument.IllegalClassFormatException
+    -exclude javax.transaction.xa.XAException
+    -exclude javax.xml.transform.sax
+    -exclude java.lang.annotation.Repeatable
+    -exclude java.lang.InterruptedException
+    -exclude java.lang.CloneNotSupportedException
+    -exclude java.lang.Throwable
+    -exclude java.lang.Thread
+    -exclude java.lang.Enum
+    -exclude org.xml.sax
 	<TR><TD><B>keywords</B> <TD>compile execute jaf extensionAPI
 </TABLE>
 

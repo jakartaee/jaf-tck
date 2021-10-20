@@ -53,8 +53,8 @@
             <isset property="debug"/>
     </condition>
 
-	<property name="module.path" value="${API_JAR}"/>
-    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar"/>
+	<property name="module.path" value="${API_JAR}:${LOCAL_CLASSES}"/>
+    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar:${API_JAR}"/>
 
     <!-- Does the current runtime support modules? -->
     <condition property="jdk.modules" value="false" else="true">
