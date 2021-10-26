@@ -32,13 +32,13 @@ spec:
   }
   parameters {
     string(name: 'ACTIVATION_BUNDLE_URL', 
-           defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0-RC1/jakarta.activation-api-2.1.0-RC1.jar',
+           defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar',
            description: 'URL required for downloading JAF implementation jar' )
     string(name: 'TCK_BUNDLE_BASE_URL',
            defaultValue: '',
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
     string(name: 'TCK_BUNDLE_FILE_NAME', 
-           defaultValue: 'jakarta-activation-tck-2.0.0.zip', 
+           defaultValue: 'jakarta-activation-tck-2.1.0.zip', 
 	   description: 'Name of bundle file to be appended to the base url' )
     choice(name: 'JDK', choices: 'JDK11',
            description: 'Java SE Version to be used for running TCK either JDK11' )
