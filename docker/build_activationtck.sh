@@ -44,9 +44,9 @@ fi
 WGET_PROPS="--progress=bar:force --no-cache"
 echo "$ACTIVATION_BUNDLE_URL"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
-  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar
+  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar
 fi
-wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O jakarta.activation.jar
+wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O jakarta.activation-api.jar
 
 which ant
 ant -version
