@@ -29,17 +29,36 @@ fi
 
 export TS_HOME=${WORKSPACE}/${TCK_NAME}
 
+export JAVA_HOME=${JDK11_HOME}
 
-if [[ "$JDK" == "JDK11" || "$JDK" == "jdk11" ]];then
-  export JAVA_HOME=${JDK11_HOME}
-  export PATH=$JAVA_HOME/bin:$PATH
-fi
+if [[ "$JDK" == "JDK12" || "$JDK" == "jdk12" ]];then
+  export JAVA_HOME=${JDK12_HOME}
+elif [[ "$JDK" == "JDK13" || "$JDK" == "jdk13" ]];then
+  export JAVA_HOME=${JDK13_HOME}
+elif [[ "$JDK" == "JDK14" || "$JDK" == "jdk14" ]];then
+  export JAVA_HOME=${JDK14_HOME}
+elif [[ "$JDK" == "JDK15" || "$JDK" == "jdk15" ]];then
+  export JAVA_HOME=${JDK15_HOME}
+elif [[ "$JDK" == "JDK16" || "$JDK" == "jdk16" ]];then
+  export JAVA_HOME=${JDK16_HOME}
+elif [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
+  export JAVA_HOME=${JDK17_HOME}
+fi  
+
+export PATH=$JAVA_HOME/bin:$PATH
+
 
 WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
-  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/com/sun/activation/jakarta.activation/2.0.0/jakarta.activation-2.0.0.jar
+  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar
 fi
-wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/jakarta.activation.jar
+wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/jakarta.activation-api.jar
+
+if [ -z "$ANGUS_BUNDLE_URL" ];then
+  export ANGUS_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/org/eclipse/angus/angus-activation/1.0.0-SNAPSHOT/angus-activation-1.0.0-20210811.141336-3.jar
+fi
+wget $WGET_PROPS $ANGUS_BUNDLE_URL -O ${WORKSPACE}/angus-activation.jar
+
 
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" ${TS_HOME}/lib/ts.jte
