@@ -59,13 +59,30 @@ if [ -z "$ANGUS_BUNDLE_URL" ];then
 fi
 wget $WGET_PROPS $ANGUS_BUNDLE_URL -O ${WORKSPACE}/angus-activation.jar
 
+if [ -z "$GF_BUNDLE_URL" ]; then
+  echo "Using default url for GF bundle: $DEFAULT_GF_BUNDLE_URL"
+  export GF_BUNDLE_URL=$DEFAULT_GF_BUNDLE_URL
+fi
+
+wget $WGET_PROPS $GF_BUNDLE_URL -O latest-glassfish.zip
+unzip -q -o latest-glassfish.zip
+
+TOP_GLASSFISH_DIR="glassfish6"
+chmod -R 777 ${TOP_GLASSFISH_DIR}
 
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.jte
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.pluggability.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" ${TS_HOME}/lib/ts.jte
 sed -i "s#^JAVA_HOME=.*#JAVA_HOME=$JAVA_HOME#g" ${TS_HOME}/lib/ts.pluggability.jte
-sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/ts.jte
-sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/ts.pluggability.jte
+
+if [[ "$RUNTIME" == "Glassfish" ]]; then
+  sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE/$TOP_GLASSFISH_DIR/glassfish/modules#g" ${TS_HOME}/lib/ts.jte
+  sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE/$TOP_GLASSFISH_DIR/glassfish/modules#g" ${TS_HOME}/lib/ts.pluggability.jte
+
+else 
+  sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/ts.jte
+  sed -i "s#^JARPATH=.*#JARPATH=$WORKSPACE#g" ${TS_HOME}/lib/ts.pluggability.jte
+fi
 
 
 which ant
@@ -74,14 +91,15 @@ ant -version
 which java
 java -version
 
+export JT_REPORT_DIR=${TS_HOME}/JTreport
+
 cd $TS_HOME
-ant run run.pluggability
+ant -Dreport.dir=$JT_REPORT_DIR run run.pluggability
 
 HOST=`hostname -f`
 echo "1 $HOST" > $WORKSPACE/args.txt
 
 mkdir -p $WORKSPACE/results/junitreports/
-JT_REPORT_DIR=$WORKSPACE/JTreport
 $JAVA_HOME/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar $WORKSPACE/args.txt $JT_REPORT_DIR $WORKSPACE/results/junitreports/ 
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz $WORKSPACE/JTreport/ $WORKSPACE/JTwork/ $WORKSPACE/results/junitreports/
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz $JT_REPORT_DIR ${TS_HOME}/JTwork/ $WORKSPACE/results/junitreports/
