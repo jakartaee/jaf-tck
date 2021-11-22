@@ -62,7 +62,7 @@
         </copy>
     </target>
 
-    <target name="core" depends="build, mvn, javadoc, _create.version.file">
+    <target name="core" depends="clean, build, mvn, javadoc, _create.version.file">
         <delete file="${zip.file}" quiet="true"/>
         <antcall target="copyEFTLicense"/>
         <zip destfile="${zip.file}">
@@ -81,15 +81,17 @@
                         version,
                         docs/javadocs/**,
                         tests/api/**,
+                        tests/pluggability/**,
                         tests/testsuite.html,
                         tests/testsuite.jtt,
                         tests/SignatureTest.html,
                         tests/*.sig,
+            	        providers/**,
                         lib/*.jte,
                         lib/*.jti,
                         lib/*.jtx,
                         tools/**,
-                        classes/**,
+                        classes**,
                         LICENSE.md,
                         harness/**"
                         prefix="activation-tck"/>
