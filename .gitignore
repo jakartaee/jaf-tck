@@ -12,3 +12,5 @@ target/
 .project
 JTreport*/
 JTwork/
+.idea
+.m2
