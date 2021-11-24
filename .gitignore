@@ -3,6 +3,7 @@
 /docs/javadocs/
 /docs/ug/src/main/jbake/content/toc.adoc
 /version
+bundles/
 
 target/
 /bin/

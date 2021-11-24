@@ -75,13 +75,13 @@ which java
 java -version
 
 cd $TS_HOME
-ant -Dreport.dir=$WORKSPACE/JTreport/${TCK_NAME} -Dwork.dir=$WORKSPACE/JTwork/${TCK_NAME}  run
+ant run run.pluggability
 
 HOST=`hostname -f`
-echo "1 $TCK_NAME $HOST" > $WORKSPACE/args.txt
+echo "1 $HOST" > $WORKSPACE/args.txt
 
 mkdir -p $WORKSPACE/results/junitreports/
 JT_REPORT_DIR=$WORKSPACE/JTreport
 $JAVA_HOME/bin/java -Djunit.embed.sysout=true -jar ${WORKSPACE}/docker/JTReportParser/JTReportParser.jar $WORKSPACE/args.txt $JT_REPORT_DIR $WORKSPACE/results/junitreports/ 
 
-tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz $WORKSPACE/JTreport/${TCK_NAME} $WORKSPACE/JTwork/${TCK_NAME} $WORKSPACE/results/junitreports/
+tar zcvf ${WORKSPACE}/${TCK_NAME}-results.tar.gz $WORKSPACE/JTreport/ $WORKSPACE/JTwork/ $WORKSPACE/results/junitreports/
