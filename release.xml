@@ -47,7 +47,7 @@
                 <pathelement path="${class.path}"/>
             </classpath>
             <fileset dir="${basedir}/tests/api"/>
-            <arg line="--add-modules ALL-MODULE-PATH"/>
+            <arg line="--add-modules ${api.module.name}"/>
         </javadoc>
     </target>
 
@@ -69,14 +69,17 @@
             <zipfileset dir="${ts.home}/docs/"
                         includes="README.md"
                         prefix="activation-tck"/>
+            <zipfileset dir="${ts.home}/docs"
+                        includes="index.html,ReleaseNotes-*.html"
+                        prefix="activation-tck/docs"/>
             <zipfileset dir="${ts.home}/docs/ug/target/staging/"
-                        prefix="activation-tck/docs/html/"/>
+                        prefix="activation-tck/docs/html-usersguide/"/>
             <zipfileset dir="${ts.home}/docs/ug/target/generated-docs/"
                         includes="*.pdf"
-                        prefix="activation-tck/docs"/>
+                        prefix="activation-tck/docs/pdf-usersguide/"/>
             <zipfileset dir="${ts.home}"
                         includes="build.xml,
-			javatest.jar,
+                        javatest.jar,
                         sigtest.jar,
                         version,
                         docs/javadocs/**,
@@ -86,7 +89,7 @@
                         tests/testsuite.jtt,
                         tests/SignatureTest.html,
                         tests/*.sig,
-            	        providers/**,
+                        providers/**,
                         lib/*.jte,
                         lib/*.jti,
                         lib/*.jtx,

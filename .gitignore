@@ -15,3 +15,5 @@ JTreport*/
 JTwork/
 .idea
 .m2
+
+*.iml
