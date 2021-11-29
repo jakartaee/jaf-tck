@@ -43,6 +43,11 @@ spec:
     string(name: 'TCK_BUNDLE_FILE_NAME', 
            defaultValue: 'jakarta-activation-tck-2.1.0.zip', 
 	   description: 'Name of bundle file to be appended to the base url' )
+    string(name: 'GF_BUNDLE_URL', 
+           defaultValue: 'https://ci.eclipse.org/jakartaee-tck/job/build-glassfish/lastSuccessfulBuild/artifact/appserver/distributions/glassfish/target/glassfish.zip', 
+           description: 'URL required for downloading GlassFish Full/Web profile bundle' )
+    choice(name: 'RUNTIME', choices: 'Glassfish\nANGUS',
+           description: 'Run JAF Tests with Angus/Glassfish' )
     choice(name: 'JDK', choices: 'JDK11',
            description: 'Java SE Version to be used for running TCK either JDK11' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
@@ -50,6 +55,7 @@ spec:
   }
   environment {
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
+    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-6.2.3.zip"
   }
   stages {
     stage('activation-tck-build') {
