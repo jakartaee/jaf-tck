@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -53,14 +53,14 @@ JARPATH=MUST-BE-SET
 API_JAR=${JARPATH}/jakarta.activation-api.jar
 
 # Set the Activation implementation path 
-##LOCAL_CLASSES=$JARPATH\\angus-activation.jar
-LOCAL_CLASSES=$JARPATH/angus-activation.jar
+##CI_JAR=$JARPATH\\angus-activation.jar
+CI_JAR=$JARPATH/angus-activation.jar
 
 ##TESTCLASS=$TS_HOME\\classes
 TESTCLASS=$TS_HOME/classes
 
-##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$LOCAL_CLASSES;$TESTCLASS
-extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$LOCAL_CLASSES:$TESTCLASS
+##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$CI_JAR;$TESTCLASS
+extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$CI_JAR:$TESTCLASS
 
 ##javatestClassDir=$TS_HOME\\javatest.jar
 javatestClassDir=$TS_HOME/javatest.jar
@@ -125,7 +125,7 @@ env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir/../classes$:$testClassDir:\
 	$javatestClassDir$:$extraOtherJVMClassPath \
 	HOME=${user.home} \
-	$JAVA_HOME/bin/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME/bin/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
 
 
 #---------- JDK/Windows NT configuration ---------------------------------------
@@ -154,4 +154,4 @@ env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir$/..$/classes$:$javatestClassDir$:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
-	$JAVA_HOME$/bin$/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME$/bin$/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
