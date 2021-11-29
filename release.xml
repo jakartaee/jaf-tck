@@ -91,7 +91,7 @@
                         lib/*.jti,
                         lib/*.jtx,
                         tools/**,
-                        classes*/**,
+                        classes**,
                         LICENSE.md,
                         harness/**"
                         prefix="activation-tck"/>
