@@ -22,6 +22,7 @@
 
     <property name="version" value="2.1"/>
     <property name="version.tck" value="2.1.0"/>
+    <property name="api.module.name" value="jakarta.activation"/>
 
 
     <property environment="env"/>
@@ -80,38 +81,39 @@
 
     <target name="build"
             description="Compiles all sources to the classes directory">
-		<javac includeantruntime="false" deprecation="yes"
-			source="11" target="11"
-			optimize="true" srcdir="tests/api"
-			classpath="${class.path}" modulepath="${module.path}" destdir="${class.dir}"
-			debug="on">
-			<compilerarg line="--add-modules ALL-MODULE-PATH"/>
-		</javac>
-    	<javac includeantruntime="false" deprecation="yes"
-    	            source="11" target="11"
-    	            optimize="true" srcdir="tests/pluggability"
-    	            classpath="${class.path}" modulepath="${module.path}" destdir="${class.pluggability.dir}"
-    	            debug="on">
-    		<compilerarg line="--add-modules ALL-MODULE-PATH"/>
-    	</javac>
         <javac includeantruntime="false" deprecation="yes"
-                     source="11" target="11"
-                     optimize="true" srcdir="providers"
-                     classpath="${class.path}" modulepath="${module.path}" destdir="${class.providers.dir}"
-                     debug="on">
-             <compilerarg line="--add-modules ALL-MODULE-PATH"/>
-         </javac>
-        <copy todir="${class.providers.dir}/META-INF">
-             <fileset dir="providers/META-INF"/>
-         </copy>
-    	<jar destfile="${class.providers.dir}/activation_alternate_provider.jar" basedir="${class.providers.dir}"/>
-        <javac includeantruntime="false" deprecation="yes"
-			source="11" target="11"
-			optimize="true" srcdir="harness"
-			classpath="${class.path}" destdir="${harness.dir}"
-			debug="on">
+               release="11"
+               srcdir="tests/api"
+               classpath="${class.path}" modulepath="${module.path}" destdir="${class.dir}"
+               debug="on">
+            <compilerarg line="--add-modules ${api.module.name}"/>
         </javac>
-    	<copy todir="${class.dir}">
+        <javac includeantruntime="false" deprecation="yes"
+               release="11"
+               srcdir="tests/pluggability"
+               classpath="${class.path}" modulepath="${module.path}" destdir="${class.pluggability.dir}"
+               debug="on">
+            <compilerarg line="--add-modules ${api.module.name}"/>
+        </javac>
+        <javac includeantruntime="false" deprecation="yes"
+               release="11"
+               srcdir="providers"
+               classpath="${class.path}" modulepath="${module.path}" destdir="${class.providers.dir}"
+               debug="on">
+            <compilerarg line="--add-modules ${api.module.name}"/>
+        </javac>
+        <copy todir="${class.providers.dir}/META-INF">
+            <fileset dir="providers/META-INF"/>
+        </copy>
+        <jar destfile="${class.providers.dir}/activation_alternate_provider.jar" basedir="${class.providers.dir}"/>
+        <javac includeantruntime="false" deprecation="yes"
+               release="11"
+               srcdir="harness"
+               classpath="${class.path}" modulepath="${module.path}" destdir="${harness.dir}"
+               debug="on">
+            <compilerarg line="--add-modules ${api.module.name}"/>
+        </javac>
+        <copy todir="${class.dir}">
              <fileset dir="${harness.dir}"/>
          </copy>
         <copy todir="${class.pluggability.dir}">
@@ -187,7 +189,7 @@
         -->
         <java classname="com.sun.javatest.tool.Main"
               failonerror="${failOnError}" fork="yes" classpath="${run.class.path}" modulepath="${module.path}">
-        	<jvmarg line="--add-modules ALL-MODULE-PATH"/>
+        	<jvmarg line="--add-modules ${api.module.name}"/>
         	<!--
         	<jvmarg line="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"/>
         	-->

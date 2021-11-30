@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package	javasoft.sqe.tests.api.jakarta.activation.MailcapCommandMap;
+package javasoft.sqe.tests.jakarta.activation.MailcapCommandMap;
 
 import	java.beans.*;
 import	java.io.*;
@@ -22,7 +22,7 @@ import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import	java.nio.charset.StandardCharsets;
 import com.sun.javatest.lib.MultiTest; 
-import	javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH;
+import javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH;
 
 /** Test: MailcapCommandMap() ; default constructor. <p>
     Test: MailcapCommandMap(String) ; allows the caller to specify the path of a mailcap file. <p>
@@ -34,7 +34,7 @@ public class MailcapCommandMap_Test extends MultiTest
 
 private static String testMailcap[] = { 
 	"text/*;;		x-java-view=rom.pun.activation.viewers.FooViewer",
-	"text/*;;		x-java-content-handler=javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH",
+	"text/*;;		x-java-content-handler=javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH",
 	"text/*;;		x-java-view=rom.pun.activation.viewers.MooViewer"  // make sure the last one takes precedence
 };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,13 +14,13 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package	javasoft.sqe.tests.api.jakarta.activation.DataHandler;
+package javasoft.sqe.tests.jakarta.activation.DataHandler;
 
 import	java.io.*;
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import	com.sun.javatest.lib.MultiTest; 
-import	javasoft.sqe.tests.api.jakarta.activation.TestClasses.*;
+import javasoft.sqe.tests.jakarta.activation.TestClasses.*;
 
 /** Create a DataHandler object then use it to invoke getAllCommands() api,
  *  if returns non-null array object containing all commands for the type

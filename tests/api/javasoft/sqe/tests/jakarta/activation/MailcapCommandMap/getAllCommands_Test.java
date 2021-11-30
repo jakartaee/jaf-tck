@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2019 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,14 +14,14 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package	javasoft.sqe.tests.api.jakarta.activation.MailcapCommandMap;
+package javasoft.sqe.tests.jakarta.activation.MailcapCommandMap;
 
 import	java.beans.*;
 import	java.io.*;
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
-import	javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH;
+import javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH;
 
 /**
  * Create a MailcapCommandMap instance, use it to call getAllCommands()
@@ -33,7 +33,7 @@ public class getAllCommands_Test extends MultiTest
 {
 private static String testMailcap[] = { 
 	"text/*;;		x-java-view=rom.pun.activation.viewers.FooViewer",
-	"text/*;;		x-java-content-handler=javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH",
+	"text/*;;		x-java-content-handler=javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH",
 	"text/*;;		x-java-view=rom.pun.activation.viewers.MooViewer"  // make sure the last one takes precedence
 };
 
@@ -65,19 +65,19 @@ public Status getAllCommandsTest()
 	// in the default sun mailcap, this also tests overriding an existing mapping. There's no general
 	// way to do that, since there's no way to know what types are provided as keys.
 
-	commandMap.addMailcap("text/*;;x-java-view=javasoft.sqe.tests.api.jakarta.activation.TestViewer");
+	commandMap.addMailcap("text/*;;x-java-view=javasoft.sqe.tests.jakarta.activation.TestViewer");
 	commandMap.addMailcap(
-		"text/*;;x-java-content-handler=javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH");
+		"text/*;;x-java-content-handler=javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH");
 	if (!runTest("text/plain", "view", 
-					"javasoft.sqe.tests.api.jakarta.activation.TestViewer", 
-					"javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH"))
+					"javasoft.sqe.tests.jakarta.activation.TestViewer", 
+					"javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH"))
 		return Status.failed(message);
 
 	// now we can test overriding the previous:	
-	commandMap.addMailcap("text/*;;x-java-view=javasoft.sqe.tests.api.jakarta.activation.FooViewer");
+	commandMap.addMailcap("text/*;;x-java-view=javasoft.sqe.tests.jakarta.activation.FooViewer");
 	if (!runTest("text/plain", "view", 
-					"javasoft.sqe.tests.api.jakarta.activation.FooViewer", 
-					"javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH"))
+					"javasoft.sqe.tests.jakarta.activation.FooViewer", 
+					"javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH"))
 		return Status.failed(message);
 
 	// see how it handles it if I add some garbage.  There's no exception defined, so at best, 
@@ -85,8 +85,8 @@ public Status getAllCommandsTest()
 
 	commandMap.addMailcap("x6`&@:;;fudge&_12345");
 	if (!runTest("text/plain", "view", 
-					"javasoft.sqe.tests.api.jakarta.activation.FooViewer", 
-					"javasoft.sqe.tests.api.jakarta.activation.TestClasses.TestDCH"))
+					"javasoft.sqe.tests.jakarta.activation.FooViewer", 
+					"javasoft.sqe.tests.jakarta.activation.TestClasses.TestDCH"))
 		return Status.failed(message);
 
     	return Status.passed(message);

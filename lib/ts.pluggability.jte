@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018, 2019 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -42,7 +42,7 @@ TS_HOME=MUST-BE-SET
 ##JAVA_HOME=/usr/jdk-11
 JAVA_HOME=MUST-BE-SET
 
-# Set this to the directory containing the Activation .jar 
+# Set this to the directory containing the Activation .jar
 # file (i.e., jakarta.activation-api.jar)
 JARPATH=MUST-BE-SET
 
@@ -122,8 +122,8 @@ env.jafUnix.script=$TCKScript
 # The runtime to be tested ...
 #
 env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir/../classes-pluggability$:$testClassDir:\
-	$javatestClassDir$:$extraOtherJVMClassPath \
+	CLASSPATH=$testSuiteRootDir/../classes-pluggability:$testClassDir:\
+	$javatestClassDir:$extraOtherJVMClassPath \
 	HOME=${user.home} \
 	$JAVA_HOME/bin/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
 
@@ -151,7 +151,7 @@ env.jafWindows.script=$TCKScript
 # JavaTest, which might in turn be set from your Windows NT SystemRoot variable.
 #
 env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir$/..$/classes-pluggability$:$javatestClassDir$:$extraOtherJVMClassPath \
+	CLASSPATH=$testSuiteRootDir$/..$/classes-pluggability:$javatestClassDir:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
 	$JAVA_HOME$/bin$/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
