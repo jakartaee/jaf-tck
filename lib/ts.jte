@@ -122,8 +122,8 @@ env.jafUnix.script=$TCKScript
 # The runtime to be tested ...
 #
 env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir/../classes$:$testClassDir:\
-	$javatestClassDir$:$extraOtherJVMClassPath \
+	CLASSPATH=$testSuiteRootDir/../classes:$testClassDir:\
+	$javatestClassDir:$extraOtherJVMClassPath \
 	HOME=${user.home} \
 	$JAVA_HOME/bin/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
 
@@ -151,7 +151,7 @@ env.jafWindows.script=$TCKScript
 # JavaTest, which might in turn be set from your Windows NT SystemRoot variable.
 #
 env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir$/..$/classes$:$javatestClassDir$:$extraOtherJVMClassPath \
+	CLASSPATH=$testSuiteRootDir$/..$/classes:$javatestClassDir:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
 	$JAVA_HOME$/bin$/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
