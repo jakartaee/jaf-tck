@@ -67,7 +67,7 @@ fi
 wget $WGET_PROPS $GF_BUNDLE_URL -O latest-glassfish.zip
 unzip -q -o latest-glassfish.zip
 
-TOP_GLASSFISH_DIR="glassfish6"
+TOP_GLASSFISH_DIR="glassfish7"
 chmod -R 777 ${TOP_GLASSFISH_DIR}
 
 sed -i "s#^TS_HOME=.*#TS_HOME=$TS_HOME#g" ${TS_HOME}/lib/ts.jte
