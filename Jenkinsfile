@@ -18,7 +18,7 @@ spec:
     - "localhost.localdomain"
   containers:
   - name: activation-tck-ci
-    image: jakartaee/cts-jaf-base:0.2
+    image: jakartaee/cts-jaf-base:0.3
     command:
     - cat
     tty: true
@@ -35,7 +35,7 @@ spec:
            defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar',
            description: 'URL required for downloading JAF vendor implementation jar' )
     string(name: 'ANGUS_BUNDLE_URL', 
-           defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/org/eclipse/angus/angus-activation/1.0.0-SNAPSHOT/angus-activation-1.0.0-20210811.141336-3.jar',
+           defaultValue: 'https://jakarta.oss.sonatype.org/content/repositories/staging/org/eclipse/angus/angus-activation/1.0.0/angus-activation-1.0.0.jar',
            description: 'URL required for downloading JAF compatible implementation jar' )
     string(name: 'TCK_BUNDLE_BASE_URL',
            defaultValue: '',
@@ -44,18 +44,18 @@ spec:
            defaultValue: 'jakarta-activation-tck-2.1.0.zip', 
 	   description: 'Name of bundle file to be appended to the base url' )
     string(name: 'GF_BUNDLE_URL', 
-           defaultValue: 'https://ci.eclipse.org/jakartaee-tck/job/build-glassfish/lastSuccessfulBuild/artifact/appserver/distributions/glassfish/target/glassfish.zip', 
+           defaultValue: 'https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
     choice(name: 'RUNTIME', choices: 'Glassfish\nANGUS',
            description: 'Run JAF Tests with Angus/Glassfish' )
-    choice(name: 'JDK', choices: 'JDK11',
-           description: 'Java SE Version to be used for running TCK either JDK11' )
+    choice(name: 'JDK', choices: 'JDK11\nJDK17',
+           description: 'Java SE Version to be used for running TCK either JDK11 or JDK17' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
   }
   environment {
     ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
-    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-6.2.3.zip"
+    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip"
   }
   stages {
     stage('activation-tck-build') {
