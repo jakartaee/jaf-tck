@@ -5,7 +5,7 @@ Running the TCK from the source
 ================================
 
 1. Checkout TCK workspace in TCKHOME (e.g., "jaf-tck).
-     git clone git@github.com:eclipse-ee4j/jaf-tck.git
+     git clone git@github.com:jakartaee/jaf-tck.git
    Change directory to $TCKHOME.
 2. Place jakarta.activation.jar in any location. Let's call it JARPATH. 
    It's usually simplest to just put them in $TCKHOME.
