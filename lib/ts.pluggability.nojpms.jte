@@ -59,8 +59,8 @@ LOCAL_CLASSES=$TS_HOME/classes-providers/activation_alternate_provider.jar
 ##TESTCLASS=$TS_HOME\\classes
 TESTCLASS=$TS_HOME/classes-pluggability
 
-##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$LOCAL_CLASSES;$API_JAR:$CI_JAR;$TESTCLASS
-extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$LOCAL_CLASSES:$API_JAR:$CI_JAR:$TESTCLASS
+##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$LOCAL_CLASSES;$API_JAR;$TESTCLASS
+extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$LOCAL_CLASSES:$API_JAR:$TESTCLASS
 
 ##javatestClassDir=$TS_HOME\\javatest.jar
 javatestClassDir=$TS_HOME/javatest.jar

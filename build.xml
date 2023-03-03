@@ -172,7 +172,7 @@
         <property name="report.dir" value="${report.api.dir}"/>
         <property name="test.suite" value="tests/api"/>
         <property name="ts.jte" value="ts.nojpms.jte"/>
-        <property name="ts.jtx" value="/lib/ts.nojpms.jtx"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.nojpms.jtx"/>
         <property name="run.class.path" value="${class.path}"/>
         <javatest.batch/>
     </target>
@@ -187,7 +187,7 @@
         <property name="report.dir" value="${report.pluggability.dir}"/>
         <property name="test.suite" value="tests/pluggability"/>
         <property name="ts.jte" value="ts.pluggability.nojpms.jte"/>
-        <property name="ts.jtx" value="/lib/ts.nojpms.jtx"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.nojpms.jtx"/>
         <property name="run.class.path" value="${pluggability.class.path}"/>
         <javatest.batch/>
     </target>
