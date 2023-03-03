@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2012, 2022 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2012, 2023 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -138,25 +138,59 @@
         <local name="run.class.path"/>
         <local name="report.dir"/>
         <local name="test.suite"/>
+        <local name="ts.jtx"/>
     	<property name="report.dir" value="${report.api.dir}"/>
     	<property name="test.suite" value="tests/api"/>
     	<property name="ts.jte" value="ts.jte"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.jtx"/>
         <property name="run.class.path" value="${class.path}"/>
         <javatest.batch/>
     </target>
 	
 	<target name="run.pluggability"
-	            description="Executes the JAF TCK in batch mode">
+	            description="Executes the JAF TCK pluggability tests in batch mode">
         <local name="ts.jte"/>
         <local name="run.class.path"/>
         <local name="report.dir"/>
 		<local name="test.suite"/>
+        <local name="ts.jtx"/>
         <property name="report.dir" value="${report.pluggability.dir}"/>
         <property name="test.suite" value="tests/pluggability"/>
         <property name="ts.jte" value="ts.pluggability.jte"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.jtx"/>
         <property name="run.class.path" value="${pluggability.class.path}"/>
         <javatest.batch/>
 	</target>
+
+    <target name="run.nojpms"
+            description="Executes the JAF TCK in CLASS-PATH mode in batch mode">
+        <local name="ts.jte"/>
+        <local name="run.class.path"/>
+        <local name="report.dir"/>
+        <local name="test.suite"/>
+        <local name="ts.jtx"/>
+        <property name="report.dir" value="${report.api.dir}"/>
+        <property name="test.suite" value="tests/api"/>
+        <property name="ts.jte" value="ts.nojpms.jte"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.nojpms.jtx"/>
+        <property name="run.class.path" value="${class.path}"/>
+        <javatest.batch/>
+    </target>
+
+    <target name="run.pluggability.nojpms"
+            description="Executes the JAF TCK pluggability tests in CLASS-PATH mode in batch mode">
+        <local name="ts.jte"/>
+        <local name="run.class.path"/>
+        <local name="report.dir"/>
+        <local name="test.suite"/>
+        <local name="ts.jtx"/>
+        <property name="report.dir" value="${report.pluggability.dir}"/>
+        <property name="test.suite" value="tests/pluggability"/>
+        <property name="ts.jte" value="ts.pluggability.nojpms.jte"/>
+        <property name="ts.jtx" value="${ts.home}/lib/ts.nojpms.jtx"/>
+        <property name="run.class.path" value="${pluggability.class.path}"/>
+        <javatest.batch/>
+    </target>
 
     <target name="gui"
             description="Executes the JAF TCK in GUI mode">
@@ -213,7 +247,7 @@
             <arg line=" -workdir ${work.dir}" />
             <arg line=" -envFiles ${ts.home}/lib/${ts.jte}" />
             <arg line=" -env jafUnix" />
-            <arg line=" -excludeList ${ts.home}/lib/ts.jtx" />
+            <arg line=" -excludeList ${ts.jtx}" />
             <arg line=" -timeoutFactor 1" />
             <arg line=" ${tests.arg}" />
             <arg line=" -runtests -writereport ${report.dir}"/>

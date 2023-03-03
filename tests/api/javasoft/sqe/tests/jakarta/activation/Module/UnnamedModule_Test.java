@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2021, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,12 +35,16 @@ public class UnnamedModule_Test extends MultiTest {
     }
 
     public Status test() {
-        String moduleName = DataSource.class.getModule().getName();
-        if (ACTIVATION_API_MODULE.equals(moduleName)) {
-            return Status.passed(moduleName);
-        } else { 
-            return Status.failed(ACTIVATION_API_MODULE + " is not visible");
+        Module m = DataSource.class.getModule();
+        if (m.isNamed()) {
+            String moduleName = m.getName();
+            if (ACTIVATION_API_MODULE.equals(moduleName)) {
+                return Status.passed(moduleName);
+            } else {
+                return Status.failed("Module name must be: '" + ACTIVATION_API_MODULE + "' but is '" + moduleName + "'");
+            }
         }
+        return Status.failed(ACTIVATION_API_MODULE + " module is not on the module path");
     }
 
 }

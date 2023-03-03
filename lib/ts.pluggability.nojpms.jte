@@ -53,14 +53,14 @@ JARPATH=MUST-BE-SET
 API_JAR=${JARPATH}/jakarta.activation-api.jar
 
 # Set the Activation implementation path 
-##CI_JAR=$JARPATH\\angus-activation.jar
-CI_JAR=$JARPATH/angus-activation.jar
+##LOCAL_CLASSES=$JARPATH\\angus-activation.jar
+LOCAL_CLASSES=$TS_HOME/classes-providers/activation_alternate_provider.jar
 
 ##TESTCLASS=$TS_HOME\\classes
-TESTCLASS=$TS_HOME/classes
+TESTCLASS=$TS_HOME/classes-pluggability
 
-##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$CI_JAR;$TESTCLASS
-extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$CI_JAR:$TESTCLASS
+##extraOtherJVMClassPath=$TS_HOME\\sigtest.jar;$LOCAL_CLASSES;$API_JAR;$TESTCLASS
+extraOtherJVMClassPath=$TS_HOME/sigtest.jar:$LOCAL_CLASSES:$API_JAR:$TESTCLASS
 
 ##javatestClassDir=$TS_HOME\\javatest.jar
 javatestClassDir=$TS_HOME/javatest.jar
@@ -74,7 +74,7 @@ JAVAMAIL_TESTDATA_DIR=$TS_HOME/tests/testdata
 
 #Test URL for signature tests.
 # This should be set to the installation <Directory of the TCK>/tests
-testURL=file://$TS_HOME/tests
+testURL=file://$TS_HOME/tests/pluggability
 
 
 # Shorthand forms, for convenience.
@@ -117,15 +117,15 @@ env.jafUnix.description=\
 	Run the runtime tests in a separate JVM (process) on UNIX
 env.jafUnix.finder=$TCKTestFinder
 env.jafUnix.script=$TCKScript
- 
+
 #
 # The runtime to be tested ...
 #
 env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir/../classes:$testClassDir:\
+	CLASSPATH=$testSuiteRootDir/../classes-pluggability:$testClassDir:\
 	$javatestClassDir:$extraOtherJVMClassPath \
 	HOME=${user.home} \
-	$JAVA_HOME/bin/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME/bin/java -verify $testExecuteClass $testExecuteArgs $testDebug
 
 
 #---------- JDK/Windows NT configuration ---------------------------------------
@@ -143,7 +143,7 @@ env.jafWindows.script=$TCKScript
 # in a separate JVM (process) on Windows NT.
 #
 # The runtime to be tested ...
-# 	The SystemRoot variable should be set to the Windows NT system 
+# 	The SystemRoot variable should be set to the Windows NT system
 #	installation directory.
 #
 # You can either set the value of SystemRoot explicitly, or you can set it to
@@ -151,7 +151,7 @@ env.jafWindows.script=$TCKScript
 # JavaTest, which might in turn be set from your Windows NT SystemRoot variable.
 #
 env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
-	CLASSPATH=$testSuiteRootDir$/..$/classes:$javatestClassDir:$extraOtherJVMClassPath \
+	CLASSPATH=$testSuiteRootDir$/..$/classes-pluggability:$javatestClassDir:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
-	$JAVA_HOME$/bin$/java --add-modules jakarta.activation --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME$/bin$/java -verify $testExecuteClass $testExecuteArgs $testDebug
