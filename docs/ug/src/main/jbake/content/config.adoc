@@ -71,7 +71,10 @@ slashes as a path separator instead.
   {TechnologyVersion} CI has been installed
   e.  `PATH` to include the following directories: `JAVA_HOME/bin`
   and `ANT_HOME/bin`
-2.  Edit your +{jteFileName}+ file and set the following
+2.  If the Vendor Implementation does not provide Java Platform module descriptor,
+move `<TS_HOME>/lib/ts.nojpms.jte` into +{jteFileName}+ file
+and `<TS_HOME>/lib/ts.pluggability.nojpms.jte` into +{jtePluggabilityFileName}+ file.
+3.  Edit your +{jteFileName}+ file and set the following
 environment variables:
   a.  Set the `JAVA_HOME` property to the directory in which Java SE {SEversion}
   is installed.
@@ -79,7 +82,7 @@ environment variables:
   {TechnologyShortName} TCK {TechnologyVersion} software is installed.
   c.  Set the +{TechnologyHomeEnv}+ property to the directory in which the
   {TechnologyShortName} {TechnologyVersion} CI has been installed.
-3. Run the JavaTest harness in GUI or command-line mode, as described in
+4. Run the JavaTest harness in GUI or command-line mode, as described in
 link:#GBFUY[Section 4.4, "Using the JavaTest Harness Software."]
 
 [[GCLHU]][[configuring-your-environment-to-run-the-tck-against-the-vendor-implementation]]
@@ -118,7 +121,10 @@ slashes as a path separator instead.
   {TechnologyVersion} Vendor Implementation has been installed
   d.  `PATH` to include the following directories: `JAVA_HOME/bin`
   and `ANT_HOME/bin`
-2.  Edit your +{jteFileName}+ file and set the following
+2.  If the Vendor Implementation does not provide Java Platform module descriptor,
+move `<TS_HOME>/lib/ts.nojpms.jte` into +{jteFileName}+ file
+and `<TS_HOME>/lib/ts.pluggability.nojpms.jte` into +{jtePluggabilityFileName}+ file.
+3.  Edit your +{jteFileName}+ file and set the following
 environment variables:
   a.  Set the `JAVA_HOME` property to the directory in which Java SE {SEversion}
   is installed.
@@ -127,7 +133,7 @@ environment variables:
   c.  Set the +{TechnologyHomeEnv}+ property to the directory in which the
   {TechnologyShortName} {TechnologyVersion} Vendor Implementation has been
   installed.
-3. Run the JavaTest harness in GUI or command-line mode, as described in
+4. Run the JavaTest harness in GUI or command-line mode, as described in
 link:#GBFUY[Section 4.4, "Using the JavaTest Harness Software."]
 
 
