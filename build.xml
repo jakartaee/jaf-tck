@@ -38,20 +38,20 @@
 
     <property file="${bin.dir}/ts.jte"/>
     <property name="lib.dir" value="${ts.home}${file.separator}lib"/>
-	<property name="harness.dir" value="${ts.home}${file.separator}classes-harness"/>
+    <property name="harness.dir" value="${ts.home}${file.separator}classes-harness"/>
     <property name="class.dir" value="${ts.home}${file.separator}classes"/>
-	<property name="class.pluggability.dir" value="${ts.home}${file.separator}classes-pluggability"/>
-	<property name="class.providers.dir" value="${ts.home}${file.separator}classes-providers"/>
+    <property name="class.pluggability.dir" value="${ts.home}${file.separator}classes-pluggability"/>
+    <property name="class.providers.dir" value="${ts.home}${file.separator}classes-providers"/>
     <property name="tests.dir" value="${ts.home}${file.separator}tests"/>
     <property name="work.dir" value="${ts.home}/JTwork"/>
     <property name="report.api.dir" value="${ts.home}/JTreport"/>
-	<property name="report.pluggability.dir" value="${ts.home}/JTreport-Pluggability"/>
-	<mkdir dir="${harness.dir}"/>
+    <property name="report.pluggability.dir" value="${ts.home}/JTreport-Pluggability"/>
+    <mkdir dir="${harness.dir}"/>
     <mkdir dir="${class.dir}"/>
-	<mkdir dir="${class.pluggability.dir}"/>
-	<mkdir dir="${class.providers.dir}"/>
+    <mkdir dir="${class.pluggability.dir}"/>
+    <mkdir dir="${class.providers.dir}"/>
     <mkdir dir="${work.dir}"/>
-	<mkdir dir="${report.pluggability.dir}"/>
+    <mkdir dir="${report.pluggability.dir}"/>
 
     <condition property="tests.arg" value="-tests ${tests}" else="">
             <isset property="tests"/>
@@ -61,22 +61,22 @@
             <isset property="debug"/>
     </condition>
 
-	<property name="module.path" value="${API_JAR}"/>
-    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar"/>
-	<property name="pluggability.class.path" value="${class.pluggability.dir}${pathsep}${ts.home}/javatest.jar"/>
+    <property name="module.path" value="${API_JAR}"/>
+    <property name="class.path" value="${class.dir}${pathsep}${ts.home}/sigtest.jar${pathsep}${ts.home}/javatest.jar${pathsep}${module.path}"/>
+    <property name="pluggability.class.path" value="${class.pluggability.dir}${pathsep}${ts.home}/javatest.jar${pathsep}${module.path}"/>
 
     <!-- Does the current runtime support modules? -->
     <condition property="jdk.modules" value="false" else="true">
-	<or>
-	    <contains string="${java.version}" substring="1.7" />
-	    <contains string="${java.version}" substring="1.8" />
-	</or>
-	<!-- anything else is JDK9+ -->
+    <or>
+        <contains string="${java.version}" substring="1.7" />
+        <contains string="${java.version}" substring="1.8" />
+    </or>
+    <!-- anything else is JDK9+ -->
     </condition>
     <condition property="java.classes.for.sig.ext"
-		value="lib/modules"
+        value="lib/modules"
                 else="lib/rt.jar">
-	<istrue value="${jdk.modules}"/>
+    <istrue value="${jdk.modules}"/>
     </condition>
 
     <target name="build"
@@ -84,23 +84,20 @@
         <javac includeantruntime="false" deprecation="yes"
                release="11"
                srcdir="tests/api"
-               classpath="${class.path}" modulepath="${module.path}" destdir="${class.dir}"
+               classpath="${class.path}" destdir="${class.dir}"
                debug="on">
-            <compilerarg line="--add-modules ${api.module.name}"/>
         </javac>
         <javac includeantruntime="false" deprecation="yes"
                release="11"
                srcdir="tests/pluggability"
-               classpath="${class.path}" modulepath="${module.path}" destdir="${class.pluggability.dir}"
+               classpath="${class.path}" destdir="${class.pluggability.dir}"
                debug="on">
-            <compilerarg line="--add-modules ${api.module.name}"/>
         </javac>
         <javac includeantruntime="false" deprecation="yes"
                release="11"
                srcdir="providers"
-               classpath="${class.path}" modulepath="${module.path}" destdir="${class.providers.dir}"
+               classpath="${class.path}" destdir="${class.providers.dir}"
                debug="on">
-            <compilerarg line="--add-modules ${api.module.name}"/>
         </javac>
         <copy todir="${class.providers.dir}/META-INF">
             <fileset dir="providers/META-INF"/>
@@ -109,9 +106,8 @@
         <javac includeantruntime="false" deprecation="yes"
                release="11"
                srcdir="harness"
-               classpath="${class.path}" modulepath="${module.path}" destdir="${harness.dir}"
+               classpath="${class.path}" destdir="${harness.dir}"
                debug="on">
-            <compilerarg line="--add-modules ${api.module.name}"/>
         </javac>
         <copy todir="${class.dir}">
              <fileset dir="${harness.dir}"/>
@@ -125,34 +121,34 @@
     <target name="clean"
             description="Cleans all classes from the classes directory">
         <delete failonerror="false" includeEmptyDirs="true">
-        	<fileset dir="${harness.dir}" includes="*/**"/>
+            <fileset dir="${harness.dir}" includes="*/**"/>
             <fileset dir="${class.dir}" includes="*/**"/>
-        	<fileset dir="${class.pluggability.dir}" includes="*/**"/>
-        	<fileset dir="${class.providers.dir}" includes="*/**"/>
+            <fileset dir="${class.pluggability.dir}" includes="*/**"/>
+            <fileset dir="${class.providers.dir}" includes="*/**"/>
         </delete>
     </target>
 
     <target name="run"
             description="Executes the JAF TCK in batch mode">
-    	<local name="ts.jte"/>
+        <local name="ts.jte"/>
         <local name="run.class.path"/>
         <local name="report.dir"/>
         <local name="test.suite"/>
         <local name="ts.jtx"/>
-    	<property name="report.dir" value="${report.api.dir}"/>
-    	<property name="test.suite" value="tests/api"/>
-    	<property name="ts.jte" value="ts.jte"/>
+        <property name="report.dir" value="${report.api.dir}"/>
+        <property name="test.suite" value="tests/api"/>
+        <property name="ts.jte" value="ts.jte"/>
         <property name="ts.jtx" value="${ts.home}/lib/ts.jtx"/>
         <property name="run.class.path" value="${class.path}"/>
         <javatest.batch/>
     </target>
-	
-	<target name="run.pluggability"
-	            description="Executes the JAF TCK pluggability tests in batch mode">
+
+    <target name="run.pluggability"
+                description="Executes the JAF TCK pluggability tests in batch mode">
         <local name="ts.jte"/>
         <local name="run.class.path"/>
         <local name="report.dir"/>
-		<local name="test.suite"/>
+        <local name="test.suite"/>
         <local name="ts.jtx"/>
         <property name="report.dir" value="${report.pluggability.dir}"/>
         <property name="test.suite" value="tests/pluggability"/>
@@ -160,7 +156,7 @@
         <property name="ts.jtx" value="${ts.home}/lib/ts.jtx"/>
         <property name="run.class.path" value="${pluggability.class.path}"/>
         <javatest.batch/>
-	</target>
+    </target>
 
     <target name="run.nojpms"
             description="Executes the JAF TCK in CLASS-PATH mode in batch mode">
@@ -222,12 +218,11 @@
           the javatest presetdef.
         -->
         <java classname="com.sun.javatest.tool.Main"
-              failonerror="${failOnError}" fork="yes" classpath="${run.class.path}" modulepath="${module.path}">
-        	<jvmarg line="--add-modules ${api.module.name}"/>
-        	<!--
-        	<jvmarg line="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"/>
-        	-->
-        	<sysproperty key="testDebug" value="${tests.debug}"/>
+              failonerror="${failOnError}" fork="yes" classpath="${run.class.path}">
+            <!--
+            <jvmarg line="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000"/>
+            -->
+            <sysproperty key="testDebug" value="${tests.debug}"/>
         </java>
     </presetdef>
 
