@@ -17,10 +17,12 @@
 package javasoft.sqe.tests.jakarta.activation.FileDataSource;
 
 import	java.io.*;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
-import javasoft.sqe.tests.jakarta.activation.TestClasses.TestFileTypeMap;
 
 /**
  * Create an instance of FileDataSource, use it to invoke getInputStream()
@@ -45,8 +47,9 @@ public Status getInputStreamTest1()
 {
 	FileDataSource fdsFromFile = new FileDataSource(new File(kFileName));
 	FileDataSource fdsFromFileName = new FileDataSource(kFileName);
-        boolean lPassed = true;
-        message = "ioTest succeeded";
+	FileDataSource fdsFromPath = new FileDataSource(Paths.get(kFileName));
+
+		message = "ioTest succeeded";
 
         msgPrefix = "FileDataSource(File) ";
         if (!testIO(fdsFromFile))
@@ -54,6 +57,10 @@ public Status getInputStreamTest1()
 
         msgPrefix = "FileDataSource(fileName) ";
         if (!testIO(fdsFromFileName))
+                return Status.failed(msgPrefix + message);
+
+        msgPrefix = "FileDataSource(Path) ";
+        if (!testIO(fdsFromPath))
                 return Status.failed(msgPrefix + message);
 
         return Status.passed("getInputStream() " + message);
@@ -67,7 +74,7 @@ public Status getInputStreamTest2()
         try {
                 is = lSource.getInputStream();          // API TEST
                 is.close();
-        } catch (FileNotFoundException fnfex) {
+        } catch (FileNotFoundException | NoSuchFileException fnfex) {
                 return Status.passed("getInputStream() test passed");
         } catch (Exception ex) {
                 return Status.failed("Failed: unexpected exception " + ex.toString());

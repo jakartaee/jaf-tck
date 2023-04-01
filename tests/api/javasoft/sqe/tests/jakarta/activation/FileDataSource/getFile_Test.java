@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.FileDataSource;
 
 import	java.io.*;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
@@ -43,13 +45,17 @@ public Status getFileTest()
 {
 	FileDataSource fdsFromFile = new FileDataSource(new File(kFileName));
 	FileDataSource fdsFromFileName = new FileDataSource(kFileName);
+	FileDataSource fdsFromPath = new FileDataSource(Paths.get(kFileName));
 	File fob1 = fdsFromFile.getFile();		// API TEST
 	File fob2 = fdsFromFileName.getFile();		// API TEST
+	File fob3 = fdsFromPath.getFile();		// API TEST
 
 	if( fob1 == null )
-	    return Status.failed("getFile() test failed");
+	    return Status.failed("getFile() from FileDataSource(File) test failed");
 	if( fob2 == null )
-	    return Status.failed("getFile() test failed");
+	    return Status.failed("getFile() from FileDataSource(String) test failed");
+	if( fob3 == null )
+	    return Status.failed("getFile() from FileDataSource(Path) test failed");
 
 	return Status.passed("getFile() test passed");
 }
