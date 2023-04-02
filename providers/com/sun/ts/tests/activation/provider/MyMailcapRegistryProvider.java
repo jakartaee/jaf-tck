@@ -35,12 +35,12 @@ public class MyMailcapRegistryProvider implements MailcapRegistryProvider {
 
     @Override
     public MailcapRegistry getByInputStream(InputStream arg0) throws IOException {
-        return null;
+        return new MyMailcapRegistry();
     }
 
     @Override
     public MailcapRegistry getInMemory() {
-        return null;
+        return new MyMailcapRegistry();
     }
 
     private static class MyMailcapRegistry implements MailcapRegistry {

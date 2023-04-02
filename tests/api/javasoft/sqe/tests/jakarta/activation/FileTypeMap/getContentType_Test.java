@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.FileTypeMap;
 
 import	java.io.*;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import javasoft.sqe.tests.jakarta.activation.TestClasses.TestFileTypeMap;
@@ -31,6 +33,8 @@ import javasoft.sqe.tests.jakarta.activation.TestClasses.TestFileTypeMap;
 public class getContentType_Test implements Test
 {
 
+private static final String TESTFILE_NAME = "testfile.txt";
+
 public static void main(String argv[])
 {
 	getContentType_Test lTest = new getContentType_Test();
@@ -40,17 +44,22 @@ public static void main(String argv[])
 
 public Status run(String argv[], PrintWriter outLog, PrintWriter outConsole)
 {
-	File fob = new File("testfile.txt");
+	File fob = new File(TESTFILE_NAME);
 	FileTypeMap ftm = FileTypeMap.getDefaultFileTypeMap();
 	String content1 = ftm.getContentType(fob);		// API TEST
 
 	if( content1 == null )
-	    return Status.failed("getContentType() returned null");
+	    return Status.failed("getContentType() with File returned null");
 
-	String content2 = ftm.getContentType("testfile.txt");	// API TEST
+	String content2 = ftm.getContentType(TESTFILE_NAME);	// API TEST
 
 	if( content2 == null )
-	    return Status.failed("getContentType() returned null");
+	    return Status.failed("getContentType() with String returned null");
+
+	String content3 = ftm.getContentType(Paths.get(TESTFILE_NAME));	// API TEST
+
+	if( content3 == null )
+	    return Status.failed("getContentType() with Path returned null");
 
 	return Status.passed("getContentType() test succeeded");
 }

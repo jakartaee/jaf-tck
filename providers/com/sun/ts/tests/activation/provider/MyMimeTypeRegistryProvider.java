@@ -34,12 +34,12 @@ public class MyMimeTypeRegistryProvider implements MimeTypeRegistryProvider {
 
     @Override
     public MimeTypeRegistry getByInputStream(InputStream arg0) throws IOException {
-        return null;
+        return new MyMimeTypeRegistry();
     }
 
     @Override
     public MimeTypeRegistry getInMemory() {
-        return null;
+        return new MyMimeTypeRegistry();
     }
 
     private static class MyMimeTypeRegistry implements MimeTypeRegistry {

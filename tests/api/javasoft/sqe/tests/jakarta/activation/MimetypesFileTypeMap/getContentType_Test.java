@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.MimetypesFileTypeMap;
 
 import	java.io.*;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
@@ -76,6 +78,12 @@ private String validateType(String fName, String expectedType)
 	String res2 = typesMap.getContentType(new File(fName));		// API TEST
 	if(!res1.equals(res2)) {
 		message = "getContentType(File) returned " + res2 + " should be " + res1;
+		return res1;
+	}
+
+	String res3 = typesMap.getContentType(Paths.get(fName));		// API TEST
+	if(!res1.equals(res3)) {
+		message = "getContentType(Path) returned " + res3 + " should be " + res1;
 		return res1;
 	}
 	return res1;
