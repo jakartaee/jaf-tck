@@ -125,7 +125,7 @@ env.jafUnix.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir/../classes-pluggability:$testClassDir:\
 	$javatestClassDir:$extraOtherJVMClassPath \
 	HOME=${user.home} \
-	$JAVA_HOME/bin/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME/bin/java -DnoSecurityManager=true --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
 
 
 #---------- JDK/Windows NT configuration ---------------------------------------
@@ -154,4 +154,4 @@ env.jafWindows.command.execute=$ExecTCKTestOtherJVMCmd \
 	CLASSPATH=$testSuiteRootDir$/..$/classes-pluggability:$javatestClassDir:$extraOtherJVMClassPath \
 	SystemRoot=${SYSTEMROOT} \
 	windir=${SYSTEMROOT} \
-	$JAVA_HOME$/bin$/java --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug
+	$JAVA_HOME$/bin$/java -DnoSecurityManager=true --add-modules ALL-MODULE-PATH --module-path $API_JAR -verify $testExecuteClass $testExecuteArgs $testDebug

@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 #
-# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,18 +29,12 @@ fi
 
 export TS_HOME=${WORKSPACE}/${TCK_NAME}
 
-if [[ "$JDK" == "JDK12" || "$JDK" == "jdk12" ]];then
-  export JAVA_HOME=${JDK12_HOME}
-elif [[ "$JDK" == "JDK13" || "$JDK" == "jdk13" ]];then
-  export JAVA_HOME=${JDK13_HOME}
-elif [[ "$JDK" == "JDK14" || "$JDK" == "jdk14" ]];then
-  export JAVA_HOME=${JDK14_HOME}
-elif [[ "$JDK" == "JDK15" || "$JDK" == "jdk15" ]];then
-  export JAVA_HOME=${JDK15_HOME}
-elif [[ "$JDK" == "JDK16" || "$JDK" == "jdk16" ]];then
-  export JAVA_HOME=${JDK16_HOME}
-elif [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
-  export JAVA_HOME=${JDK17_HOME}
+cd $WORKSPACE
+
+if [[ "$JDK" == "JDK21" || "$JDK" == "jdk21" ]];then
+  wget https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz -O jdk-21.tar.gz
+  tar -xvf jdk-21.tar.gz
+  export JAVA_HOME=$WORKSPACE/jdk-21.0.1
 fi  
 
 export PATH=$JAVA_HOME/bin:$PATH
@@ -48,12 +42,12 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 WGET_PROPS="--progress=bar:force --no-cache"
 if [ -z "$ACTIVATION_BUNDLE_URL" ];then
-  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.0/jakarta.activation-api-2.1.0.jar
+  export ACTIVATION_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/jakarta/activation/jakarta.activation-api/2.1.2/jakarta.activation-api-2.1.2.jar
 fi
 wget $WGET_PROPS $ACTIVATION_BUNDLE_URL -O ${WORKSPACE}/jakarta.activation-api.jar
 
 if [ -z "$ANGUS_BUNDLE_URL" ];then
-  export ANGUS_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/org/eclipse/angus/angus-activation/1.0.0-SNAPSHOT/angus-activation-1.0.0-20210811.141336-3.jar
+  export ANGUS_BUNDLE_URL=https://jakarta.oss.sonatype.org/content/repositories/staging/org/eclipse/angus/angus-activation/2.0.1/angus-activation-2.0.1.jar
 fi
 wget $WGET_PROPS $ANGUS_BUNDLE_URL -O ${WORKSPACE}/angus-activation.jar
 
