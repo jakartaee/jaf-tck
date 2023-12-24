@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,6 +17,9 @@
 package javasoft.sqe.tests.jakarta.activation.FileDataSource;
 
 import	java.io.*;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
@@ -47,10 +50,13 @@ public Status FileDataSourceTest1()
 {
 	FileDataSource fdsFromFile = new FileDataSource(new File(kFileName));		// API TEST
 	FileDataSource fdsFromFileName = new FileDataSource(kFileName);		// API TEST
+	FileDataSource fdsFromPath = new FileDataSource(Paths.get(kFileName));		// API TEST
 	if (!kFileName.equals(fdsFromFileName.getName()))
 		return Status.failed("FileDataSource(fileName) nameTest failed");
 	if (!kFileName.equals(fdsFromFile.getName()))
 		return Status.failed("FileDataSource(File) nameTest failed");
+	if (!kFileName.equals(fdsFromPath.getName()))
+		return Status.failed("FileDataSource(Path) nameTest failed");
 
 	return Status.passed("FileDataSource() test passed");
 }
@@ -63,7 +69,7 @@ public Status FileDataSourceTest2()
 	try {
 		is = lSource.getInputStream();
 		is.close();
-	} catch (FileNotFoundException fnfex) {
+	} catch (FileNotFoundException | NoSuchFileException fnfex) {
 		return Status.passed("FileDataSource() no input test passed");
 	} catch (Exception ex) {
 		return Status.failed("FileDataSource() no input test failed: unexpected exception " + ex.toString());

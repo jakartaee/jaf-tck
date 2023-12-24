@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.TestClasses;
 
 import	java.io.*;
+import java.nio.file.Path;
+
 import	jakarta.activation.*;
 
 /** Test utility library used by FileTypeMap tests.
@@ -35,4 +37,9 @@ public class TestFileTypeMap extends FileTypeMap
     public String getContentType(String filename){
     	return getTestType();
     }
+
+	@Override
+	public String getContentType(Path path) {
+		return getTestType();
+	}
 }
