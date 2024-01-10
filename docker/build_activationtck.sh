@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #
-# Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,11 +17,7 @@
 
 cd $WORKSPACE
 
-wget https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz -O jdk-21.tar.gz
-tar -xvf jdk-21.tar.gz
-export JAVA_HOME=$WORKSPACE/jdk-21.0.1
-export PATH=$JAVA_HOME/bin:$PATH
-
+export JAVA_HOME=${JDK11_HOME}
 
 echo "ANT_HOME=$ANT_HOME"
 echo "export JAVA_HOME=$JAVA_HOME"

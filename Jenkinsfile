@@ -41,15 +41,15 @@ spec:
            defaultValue: '',
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
     string(name: 'TCK_BUNDLE_FILE_NAME', 
-           defaultValue: 'jakarta-activation-tck-2.1.0.zip', 
+           defaultValue: 'jakarta-activation-tck-2.1.2.zip', 
 	   description: 'Name of bundle file to be appended to the base url' )
     string(name: 'GF_BUNDLE_URL', 
            defaultValue: 'https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0.zip', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
     choice(name: 'RUNTIME', choices: 'Glassfish\nANGUS',
            description: 'Run JAF Tests with Angus/Glassfish' )
-    choice(name: 'JDK', choices: 'JDK21',
-           description: 'Java SE Version to be used for running TCK either JDK21' )
+    choice(name: 'JDK', choices: 'JDK11\nJDK17\nJDK21',
+           description: 'Java SE Version to be used for running TCK either JDK11 or JDK17 or JDK21' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
   }
