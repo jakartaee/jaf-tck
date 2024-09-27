@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.FileDataSource;
 
 import	java.io.*;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
@@ -43,13 +45,17 @@ public Status getNameTest()
 {
 	FileDataSource fdsFromFile = new FileDataSource(new File(kFileName));
 	FileDataSource fdsFromFileName = new FileDataSource(kFileName);
+	FileDataSource fdsFromPath = new FileDataSource(Paths.get(kFileName));
 	String name1 = fdsFromFile.getName();		// API TEST
 	String name2 = fdsFromFileName.getName();	// API TEST
+	String name3 = fdsFromPath.getName();		// API TEST
 
 	if( name1 == null )
-	    return Status.failed("getName() test failed");
+	    return Status.failed("getName() from FileDataSource(File) test failed");
 	if( name2 == null )
-	    return Status.failed("getName() test failed");
+	    return Status.failed("getName() from FileDataSource(String) test failed");
+	if( name3 == null )
+	    return Status.failed("getName() from FileDataSource(Path) test failed");
 
 	return Status.passed("getName() test passed");
 }

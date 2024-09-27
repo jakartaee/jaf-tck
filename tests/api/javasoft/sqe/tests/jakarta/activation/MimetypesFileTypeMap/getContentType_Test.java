@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,6 +17,8 @@
 package javasoft.sqe.tests.jakarta.activation.MimetypesFileTypeMap;
 
 import	java.io.*;
+import java.nio.file.Paths;
+
 import	jakarta.activation.*;
 import	com.sun.javatest.*;
 import com.sun.javatest.lib.MultiTest; 
@@ -76,6 +78,12 @@ private String validateType(String fName, String expectedType)
 	String res2 = typesMap.getContentType(new File(fName));		// API TEST
 	if(!res1.equals(res2)) {
 		message = "getContentType(File) returned " + res2 + " should be " + res1;
+		return res1;
+	}
+
+	String res3 = typesMap.getContentType(Paths.get(fName));		// API TEST
+	if(!res1.equals(res3)) {
+		message = "getContentType(Path) returned " + res3 + " should be " + res1;
 		return res1;
 	}
 	return res1;
